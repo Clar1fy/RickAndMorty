@@ -1,43 +1,95 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    // Application
+    id("com.android.application")
+
+    // Kotlin
+    kotlin("android")
+
+    // Kapt
+    kotlin("kapt")
+
+    // Navigation SafeArgs
+    id(Dependencies.Navigation.safeArgsPlugin)
+
+    // Hilt
+    id(Dependencies.Hilt.plugin)
+
+    // Firebase
+//    id(Dependencies.Firebase.googleServices)
 }
 
 android {
-    compileSdk 32
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        applicationId "com.timplifier.rickandmorty"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.timplifier.rickandmorty"
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+        versionCode = 1
+        versionName = "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
+    //ViewBinding
+    buildFeatures.viewBinding = true
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // UI Components
+    implementation(Dependencies.UIComponents.material)
+    implementation(Dependencies.UIComponents.constraintLayout)
+    implementation(Dependencies.UIComponents.viewBindingPropertyDelegate)
+
+    // Core
+    implementation(Dependencies.Core.core)
+
+    // Activity
+    implementation(Dependencies.Activity.activity)
+
+    // Fragment
+    implementation(Dependencies.Fragment.fragment)
+
+    // Lifecycle
+    implementation(Dependencies.Lifecycle.runtime)
+    implementation(Dependencies.Lifecycle.viewModel)
+
+    // Navigation
+    implementation(Dependencies.Navigation.fragment)
+    implementation(Dependencies.Navigation.ui)
+
+    // Retrofit
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.converterGson)
+
+    // Hilt
+    implementation(Dependencies.Hilt.android)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    kapt(Dependencies.Hilt.compiler)
+
+    //Firebase
+//    implementation(Dependencies.Firebase.version)
+//    implementation(Dependencies.Firebase.analytics)
+//    implementation (Dependencies.Firebase.platform)
+//    implementation(Dependencies.Firebase.auth)
+
+    // SplashScreen
+    implementation(Dependencies.SplashScreen.splashScreen)
+
 }
