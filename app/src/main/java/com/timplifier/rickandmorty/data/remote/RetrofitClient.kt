@@ -2,6 +2,7 @@ package com.timplifier.rickandmorty.data.remote
 
 import com.timplifier.rickandmorty.common.constants.Constants.BASE_URL
 import com.timplifier.rickandmorty.data.remote.apiservices.CharactersApiService
+import com.timplifier.rickandmorty.data.remote.apiservices.LocationsApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -29,5 +30,8 @@ class RetrofitClient {
 
     fun provideCharactersApiService() =
         retrofit.create(CharactersApiService::class.java)
+
+    fun provideLocationApiService() = retrofit.create(LocationsApiService::class.java)
+    fun provideEpisodesApiservice() = retrofit.create(CharactersApiService::class.java)
 
 }

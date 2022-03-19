@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.common.extensions.setImage
+import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyCharacter
 import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
 
 class CharactersAdapter(
-    private
+    private val onItemClick: (RickAndMortyCharacter) -> Unit
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
-    private var list: List = ArrayList()
+    private var list: List<RickAndMortyCharacter> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder =
 
         CharactersViewHolder(
@@ -28,14 +29,18 @@ class CharactersAdapter(
     override fun getItemCount(): Int =
         list.size
 
-    fun setList(list: List) {
+    fun setList(list: List<RickAndMortyCharacter>) {
         this.list = list
     }
 
     inner class CharactersViewHolder(private val binding: ItemCharactersBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(any: Any) {
-            binding.imCharacter.setImage()
+        fun onBind(character: RickAndMortyCharacter) {
+            binding.imCharacter.setImage(character.image)
+            binding.tvCharacter.text = character.name
+            binding.root.setOnClickListener {
+                onItemClick(character)
+            }
 
 
         }
