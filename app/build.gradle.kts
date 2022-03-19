@@ -67,6 +67,7 @@ dependencies {
     // Lifecycle
     implementation(Dependencies.Lifecycle.runtime)
     implementation(Dependencies.Lifecycle.viewModel)
+    implementation(Dependencies.Lifecycle.liveData)
 
     // Navigation
     implementation(Dependencies.Navigation.fragment)

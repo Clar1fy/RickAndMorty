@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.presentation.ui.fragments
+package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>(
     R.layout.fragment_characters
 ) {
-    override val binding by viewBinding(com.timplifier.rickandmorty.databinding.FragmentCharactersBinding::bind)
+    override val binding by viewBinding(FragmentCharactersBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
     private val characterAdapter = CharactersAdapter()
 

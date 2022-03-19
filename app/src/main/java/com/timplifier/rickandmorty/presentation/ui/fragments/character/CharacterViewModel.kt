@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.presentation.ui.fragments
+package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
 import com.timplifier.rickandmorty.base.BaseViewModel
 import com.timplifier.rickandmorty.data.repositories.CharacterRepository

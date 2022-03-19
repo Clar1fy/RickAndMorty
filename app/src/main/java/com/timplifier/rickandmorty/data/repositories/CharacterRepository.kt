@@ -8,12 +8,8 @@ import javax.inject.Inject
 class CharacterRepository @Inject constructor(
     private val charactersApiService: CharactersApiService
 ) {
-    fun fetchCharacters() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-        } catch (e: Exception) {
+    fun fetchCharacters() = liveData{
 
-        }
     }
 
 }

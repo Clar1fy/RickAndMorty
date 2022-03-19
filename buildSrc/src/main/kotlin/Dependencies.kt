@@ -44,6 +44,7 @@ object Dependencies {
 
         // | for ViewModel
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
     }
 
     object Navigation {
