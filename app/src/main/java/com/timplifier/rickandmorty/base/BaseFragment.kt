@@ -6,38 +6,39 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<Binding : ViewBinding>(
+abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
     @LayoutRes layoutId: Int
 ) : Fragment(layoutId) {
-    protected abstract val binding: ViewBinding
+    protected abstract val binding: Binding
+    protected abstract val viewModel: ViewModel
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initAdapter()
+        setupListeners()
+        setupViews()
+        setupObserver()
+        setupRequest()
         initialize()
-        setup()
-        getArgs()
     }
 
-    open fun initListeners() {
-        TODO("Not yet implemented")
+    open fun setupListeners() {
     }
 
-    open fun initAdapter() {
-
-    }
 
     open fun initialize() {
 
     }
 
-    open fun setup() {
+    open fun setupViews() {
 
     }
 
-    open fun getArgs() {
+    open fun setupRequest() {
+
+    }
+
+    open fun setupObserver() {
 
     }
 }

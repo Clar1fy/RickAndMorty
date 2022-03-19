@@ -14,8 +14,6 @@ plugins {
     // Hilt
     id(Dependencies.Hilt.plugin)
 
-    // Firebase
-//    id(Dependencies.Firebase.googleServices)
 }
 
 android {
@@ -35,7 +33,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -78,6 +76,11 @@ dependencies {
     implementation(Dependencies.Retrofit.retrofit)
     implementation(Dependencies.Retrofit.converterGson)
 
+    // OkHttpClient
+    implementation(Dependencies.OkHttp.loggingInterceptor)
+    implementation(Dependencies.OkHttp.okHttp)
+    implementation(Dependencies.OkHttp.bom)
+
     // Hilt
     implementation(Dependencies.Hilt.android)
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
@@ -86,11 +89,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     kapt(Dependencies.Hilt.compiler)
 
-    //Firebase
-//    implementation(Dependencies.Firebase.version)
-//    implementation(Dependencies.Firebase.analytics)
-//    implementation (Dependencies.Firebase.platform)
-//    implementation(Dependencies.Firebase.auth)
+    // Glide
+    implementation(Dependencies.Glide.glide)
+
 
     // SplashScreen
     implementation(Dependencies.SplashScreen.splashScreen)

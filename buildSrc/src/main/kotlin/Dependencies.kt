@@ -103,7 +103,11 @@ object Dependencies {
         const val googleServices = "com.google.gms.google-services"
         const val services = "com.google.gms:google-services"
     }
+
     object SplashScreen {
         const val splashScreen = "androidx.core:core-splashscreen:1.0.0-beta01"
+    }
+    object Glide {
+        const val glide ="com.github.bumptech.glide:glide:4.13.0"
     }
 }

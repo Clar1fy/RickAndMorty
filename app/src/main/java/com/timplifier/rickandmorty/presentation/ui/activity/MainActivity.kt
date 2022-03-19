@@ -1,7 +1,7 @@
 package com.timplifier.rickandmorty.presentation.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.timplifier.rickandmorty.R
 import dagger.hilt.android.AndroidEntryPoint
