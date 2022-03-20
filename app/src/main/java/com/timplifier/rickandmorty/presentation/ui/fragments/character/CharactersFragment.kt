@@ -2,7 +2,6 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
 import android.util.Log
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
@@ -53,11 +52,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun onItemClick(rickAndMortyCharacter: RickAndMortyCharacter) {
-        findNavController().navigate(
-            CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailsFragment(
-                rickAndMortyCharacter.id
-            )
-        )
+
     }
 
 }

@@ -3,6 +3,7 @@ package com.timplifier.rickandmorty.presentation.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.databinding.ActivityMainBinding
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.charactersFragment,
+                R.id.episodesFragment,
+                R.id.locationsFragment
+            )
+        )
+        NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
 
     }
 }
