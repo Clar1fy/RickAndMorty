@@ -9,7 +9,7 @@
     <item
         android:id="@+id/locationsFragment"
         android:enabled="true"
-        android:icon="@drawable/location"
+        android:icon="@drawable/locations"
         android:title="@string/locations" />
     <item
         android:id="@+id/episodesFragment"
