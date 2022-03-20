@@ -9,6 +9,6 @@ data class RickAndMortyEpisode(
     val name: String,
     @SerializedName("air_date")
     val air_date: String,
-    @SerializedName("episode")
+    @SerializedName("episodes")
     val episode: String
 )

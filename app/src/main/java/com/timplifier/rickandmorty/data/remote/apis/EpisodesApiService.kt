@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface EpisodesApiService {
 
-    @GET("api/episode")
+    @GET("api/episodes")
     suspend fun fetchEpisodes(): RickAndMortyResponse<RickAndMortyEpisode>
 }
