@@ -1,23 +1,42 @@
 package com.timplifier.rickandmorty.presentation.ui.adapters
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
+import com.timplifier.rickandmorty.databinding.ItemLocationsBinding
 
 class LocationsAdapter() : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
+    private var list: List<RickAndMortyLocation> = ArrayList()
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHolder {
-        TODO("Not yet implemented")
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHolder =
+        LocationsViewHolder(
+            ItemLocationsBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
 
     override fun onBindViewHolder(holder: LocationsViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.onBind(list[position])
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+    override fun getItemCount(): Int = list.size
+
+    fun setList(list: List<RickAndMortyLocation>) {
+        this.list = list
     }
-    class LocationsViewHolder() {
+
+    class LocationsViewHolder(private val binding: ItemLocationsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(rickAndMortyLocation: RickAndMortyLocation) {
+            binding.
+
+        }
+
 
     }
 }

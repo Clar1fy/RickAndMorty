@@ -26,10 +26,17 @@ class EpisodesAdapter : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>(
     override fun getItemCount(): Int =
         list.size
 
+    fun setList(list: List<RickAndMortyEpisode>) {
+        this.list = list
+    }
 
     inner class EpisodeViewHolder(private val binding: ItemEpisodesBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(rickAndMortyEpisode: RickAndMortyEpisode) {
+
+            binding.tvName.text = rickAndMortyEpisode.name
+            binding.tvAirDate.text = rickAndMortyEpisode.air_date
+            binding.tvEpisode.text = rickAndMortyEpisode.episode
 
 
         }
