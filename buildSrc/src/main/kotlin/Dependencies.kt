@@ -48,7 +48,7 @@ object Dependencies {
     }
 
     object Navigation {
-        const val version = "2.4.1"
+        private const val version = "2.4.1"
 
         const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
         const val ui = "androidx.navigation:navigation-ui-ktx:$version"
@@ -56,7 +56,7 @@ object Dependencies {
     }
 
     object Hilt {
-        const val version = "2.41"
+        private const val version = "2.41"
 
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
@@ -108,7 +108,8 @@ object Dependencies {
     object SplashScreen {
         const val splashScreen = "androidx.core:core-splashscreen:1.0.0-beta01"
     }
+
     object Glide {
-        const val glide ="com.github.bumptech.glide:glide:4.13.0"
+        const val glide = "com.github.bumptech.glide:glide:4.13.0"
     }
 }

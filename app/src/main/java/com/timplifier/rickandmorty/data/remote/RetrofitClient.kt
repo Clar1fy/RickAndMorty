@@ -2,6 +2,7 @@ package com.timplifier.rickandmorty.data.remote
 
 import com.timplifier.rickandmorty.common.constants.Constants.BASE_URL
 import com.timplifier.rickandmorty.data.remote.apis.CharactersApiService
+import com.timplifier.rickandmorty.data.remote.apis.EpisodesApiService
 import com.timplifier.rickandmorty.data.remote.apis.LocationsApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,7 +17,6 @@ class RetrofitClient {
         .connectTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
-
         .build()
 
     private fun provideLoggingInterceptor() =
@@ -31,7 +31,10 @@ class RetrofitClient {
     fun provideCharactersApiService() =
         retrofit.create(CharactersApiService::class.java)
 
-    fun provideLocationApiService() = retrofit.create(LocationsApiService::class.java)
-    fun provideEpisodesApiService() = retrofit.create(CharactersApiService::class.java)
+    fun provideLocationApiService() =
+        retrofit.create(LocationsApiService::class.java)
+
+    fun provideEpisodesApiService() =
+        retrofit.create(EpisodesApiService::class.java)
 
 }

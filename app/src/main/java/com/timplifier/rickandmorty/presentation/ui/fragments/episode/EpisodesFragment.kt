@@ -24,7 +24,6 @@ class EpisodesFragment :
 
     override fun setupViews() {
         setupAdapter()
-        subscribeToLocations()
 
     }
 

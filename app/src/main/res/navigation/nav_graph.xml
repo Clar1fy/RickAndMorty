@@ -9,7 +9,7 @@
         android:id="@+id/charactersFragment"
         android:name="com.timplifier.rickandmorty.presentation.ui.fragments.character.CharactersFragment"
         android:label="fragment_characters"
-        tools:layout="@layout/fragment_characters" >
+        tools:layout="@layout/fragment_characters">
         <action
             android:id="@+id/action_charactersFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment" />
@@ -28,7 +28,7 @@
         android:id="@+id/characterDetailsFragment"
         android:name="com.timplifier.rickandmorty.presentation.ui.fragments.character.details.CharacterDetailsFragment"
         android:label="fragment_character_details"
-        tools:layout="@layout/fragment_character_details" >
+        tools:layout="@layout/fragment_character_details">
         <argument
             android:name="idFromCharacterFragment"
             app:argType="integer" />

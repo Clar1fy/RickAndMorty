@@ -8,8 +8,9 @@ import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewModel>(
     R.layout.fragment_locations
 ) {

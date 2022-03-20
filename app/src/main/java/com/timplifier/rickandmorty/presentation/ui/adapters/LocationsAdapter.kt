@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
 import com.timplifier.rickandmorty.databinding.ItemLocationsBinding
 
-class LocationsAdapter() : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
+class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
     private var list: List<RickAndMortyLocation> = ArrayList()
 
 
@@ -33,7 +33,9 @@ class LocationsAdapter() : RecyclerView.Adapter<LocationsAdapter.LocationsViewHo
     class LocationsViewHolder(private val binding: ItemLocationsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(rickAndMortyLocation: RickAndMortyLocation) {
-            binding.
+            binding.tvName.text = rickAndMortyLocation.name
+            binding.tvType.text = rickAndMortyLocation.type
+            binding.tvDimension.text = rickAndMortyLocation.dimension
 
         }
 
