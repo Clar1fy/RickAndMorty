@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.common.extensions.setImage
-import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyCharacter
+import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
 
 class CharactersAdapter(

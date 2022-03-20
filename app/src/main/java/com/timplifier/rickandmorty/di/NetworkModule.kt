@@ -25,7 +25,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideEpisodesApiService() = retrofitClient.provideEpisodesApiservice()
+    fun provideEpisodesApiService() = retrofitClient.provideEpisodesApiService()
 
 
 }
