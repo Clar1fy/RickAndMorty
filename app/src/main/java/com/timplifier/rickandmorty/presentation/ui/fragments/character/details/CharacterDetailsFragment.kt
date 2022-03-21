@@ -47,9 +47,8 @@ class CharacterDetailsFragment :
 
                     }
                     is Resource.Success -> {
-                        (activity as AppCompatActivity).supportActionBar?.title = it.data!!.name
-                        binding.tvCharacter.text = it.data.name
-                        binding.imCharacter.setImage(it.data.image)
+                        binding.tvCharacter.text = it.data?.name
+                        it.data?.image?.let { it1 -> binding.imCharacter.setImage(it1) }
                     }
                 }
             }

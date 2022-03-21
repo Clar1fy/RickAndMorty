@@ -3,6 +3,7 @@ package com.timplifier.rickandmorty.presentation.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.databinding.ActivityMainBinding
@@ -23,20 +24,13 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.charactersFragment -> {
-                    binding.toolbar.title = getString(R.string.characters)
-                }
-                R.id.locationsFragment -> {
-                    binding.toolbar.title = getString(R.string.locations)
+        val appBarConfiguration = AppBarConfiguration.Builder(
+            R.id.charactersFragment,
+            R.id.locationsFragment,
+            R.id.episodesFragment
+        ).build()
+        NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
 
-                }
-                R.id.episodesFragment -> {
-                    binding.toolbar.title = getString(R.string.episodes)
-                }
-            }
-        }
 
     }
 }
