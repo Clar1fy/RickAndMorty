@@ -1,41 +1,46 @@
-package com.timplifier.rickandmorty.presentation.ui.fragments.episode
+package com.timplifier.rickandmorty.presentation.ui.fragments.character.details
 
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.common.resource.Resource
-import com.timplifier.rickandmorty.databinding.FragmentEpisodesBinding
-import com.timplifier.rickandmorty.presentation.ui.adapters.EpisodesAdapter
+import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
+import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EpisodesFragment :
-    BaseFragment<FragmentEpisodesBinding, EpisodeViewModel>(R.layout.fragment_episodes) {
-    override val binding by viewBinding(FragmentEpisodesBinding::bind)
-    override val viewModel: EpisodeViewModel by viewModels()
-    private val adapter = EpisodesAdapter()
+class CharacterDetailsFragment :
+    BaseFragment<FragmentCharacterDetailsBinding, CharacterDetailsViewModel>(
+        R.layout.fragment_character_details
+    ) {
+    override val binding by viewBinding(FragmentCharacterDetailsBinding::bind)
+    override val viewModel: CharacterDetailsViewModel by viewModels()
+    private val args: CharacterDetailsFragmentArgs by navArgs()
+    private val adapter = CharactersAdapter(this::onClick)
+
+
     override fun setupViews() {
         setupAdapter()
-
     }
 
-
     private fun setupAdapter() {
+
         binding.recyclerview.adapter = adapter
     }
 
-
     override fun setupObserver() {
-        subscribeToEpisodes()
+        subscribeToCharacters()
     }
 
-    private fun subscribeToEpisodes() {
+
+    private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchEpisodes().observe(viewLifecycleOwner) {
+            viewModel.fetchSingleCharacter(args.characterId).observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Loading -> {
                         Log.e("GayPop", "Loading ")
@@ -47,13 +52,21 @@ class EpisodesFragment :
 
                     }
                     is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.setList(it1) }
+                        it.data?.results?.let { it1 -> adapter.setList(it1)
+                        }
+
+
                     }
                 }
             }
 
         }
+    }
+
+    private fun onClick(id: Int) {
+
 
     }
+
 
 }

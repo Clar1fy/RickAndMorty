@@ -8,7 +8,7 @@ import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharac
 import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
 
 class CharactersAdapter(
-    private val onItemClick: (RickAndMortyCharacter) -> Unit
+    private val onItemClick: (id: Int) -> Unit
 ) : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
     private var list: List<RickAndMortyCharacter> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder =
@@ -31,6 +31,7 @@ class CharactersAdapter(
 
     fun setList(list: List<RickAndMortyCharacter>) {
         this.list = list
+        notifyDataSetChanged()
     }
 
     inner class CharactersViewHolder(private val binding: ItemCharactersBinding) :
@@ -39,7 +40,7 @@ class CharactersAdapter(
             binding.imCharacter.setImage(character.image)
             binding.tvCharacter.text = character.name
             binding.root.setOnClickListener {
-                onItemClick(character)
+                onItemClick(character.id)
             }
 
 

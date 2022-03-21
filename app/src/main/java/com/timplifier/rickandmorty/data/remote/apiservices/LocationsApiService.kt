@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.data.remote.apis
+package com.timplifier.rickandmorty.data.remote.apiservices
 
 import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation

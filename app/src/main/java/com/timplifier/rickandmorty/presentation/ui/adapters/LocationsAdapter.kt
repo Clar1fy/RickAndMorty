@@ -28,6 +28,7 @@ class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.LocationsViewHold
 
     fun setList(list: List<RickAndMortyLocation>) {
         this.list = list
+        notifyDataSetChanged()
     }
 
     class LocationsViewHolder(private val binding: ItemLocationsBinding) :

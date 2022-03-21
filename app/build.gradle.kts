@@ -51,6 +51,7 @@ android {
 dependencies {
 
     // UI Components
+    implementation(Dependencies.UIComponents.appCompat)
     implementation(Dependencies.UIComponents.material)
     implementation(Dependencies.UIComponents.constraintLayout)
     implementation(Dependencies.UIComponents.viewBindingPropertyDelegate)
@@ -84,11 +85,10 @@ dependencies {
 
     // Hilt
     implementation(Dependencies.Hilt.android)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     kapt(Dependencies.Hilt.compiler)
+
+    // Legacy Support
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Glide
     implementation(Dependencies.Glide.glide)

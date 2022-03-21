@@ -2,6 +2,7 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
 import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
@@ -9,6 +10,7 @@ import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewModel>(
@@ -23,6 +25,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     }
 
     private fun setupAdapter() {
+
         binding.recyclerview.adapter = adapter
     }
 
@@ -31,18 +34,21 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     }
 
     private fun subscribeToLocations() {
-        viewModel.fetchLocations().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    Log.e("gaypop", "subscribeToLocations: ")
-                }
-                is Resource.Error -> {
-                    Log.e("gaypop", it.message.toString())
-                }
-                is Resource.Success -> {
-                    it.data?.results?.let { it1 -> adapter.setList(it1) }
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.fetchLocations().observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Loading -> {
+                        Log.e("gaypop", "subscribeToLocations: ")
+                    }
+                    is Resource.Error -> {
+                        Log.e("gaypop", it.message.toString())
+                    }
+                    is Resource.Success -> {
+                        it.data?.results?.let { it1 -> adapter.setList(it1) }
 
+                    }
+
+                }
             }
         }
     }

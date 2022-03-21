@@ -2,12 +2,12 @@ package com.timplifier.rickandmorty.data.repositories
 
 import androidx.lifecycle.liveData
 import com.timplifier.rickandmorty.common.resource.Resource
-import com.timplifier.rickandmorty.data.remote.apis.CharactersApiService
+import com.timplifier.rickandmorty.data.remote.apiservices.CharactersApiService
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
-    private val charactersApiService: CharactersApiService
+    private val charactersApiService: CharactersApiService,
 ) {
     fun fetchCharacters() = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
@@ -18,6 +18,18 @@ class CharacterRepository @Inject constructor(
             emit(Resource.Error(null, ioException.localizedMessage))
         }
 
+    }
+
+    fun fetchSingleCharacter(id: Int) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+
+
+        try {
+            emit(Resource.Success(charactersApiService.fetchSingleCharacter(id)))
+
+        } catch (ioException: Exception) {
+            emit(Resource.Error(null, ioException.localizedMessage))
+        }
     }
 
 }

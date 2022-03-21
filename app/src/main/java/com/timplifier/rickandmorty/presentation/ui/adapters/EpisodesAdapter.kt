@@ -28,6 +28,7 @@ class EpisodesAdapter : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>(
 
     fun setList(list: List<RickAndMortyEpisode>) {
         this.list = list
+        notifyDataSetChanged()
     }
 
     inner class EpisodeViewHolder(private val binding: ItemEpisodesBinding) :

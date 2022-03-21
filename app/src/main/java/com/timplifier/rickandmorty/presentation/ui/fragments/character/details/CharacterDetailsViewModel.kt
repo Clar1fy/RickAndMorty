@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.presentation.ui.fragments.character
+package com.timplifier.rickandmorty.presentation.ui.fragments.character.details
 
 import com.timplifier.rickandmorty.base.BaseViewModel
 import com.timplifier.rickandmorty.data.repositories.CharacterRepository
@@ -6,14 +6,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterViewModel @Inject constructor(
+class CharacterDetailsViewModel @Inject constructor(
     private val characterRepository: CharacterRepository
 ) : BaseViewModel() {
 
-
-    fun fetchCharacters() =
-        characterRepository.fetchCharacters()
-
-
+    fun fetchSingleCharacter(id: Int) =
+        characterRepository.fetchSingleCharacter(id)
 }
-

@@ -1,11 +1,15 @@
-package com.timplifier.rickandmorty.data.remote.apis
+package com.timplifier.rickandmorty.data.remote.apiservices
 
 import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface CharactersApiService {
 
-    @GET("api/characters")
+    @GET("api/character")
     suspend fun fetchCharacters(): RickAndMortyResponse<RickAndMortyCharacter>
+
+    @GET("api/character/{id}")
+    suspend fun fetchSingleCharacter(@Path("id") id: Int): RickAndMortyResponse<RickAndMortyCharacter>
 }

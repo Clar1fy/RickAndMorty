@@ -16,18 +16,15 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupListeners()
+        initialize()
         setupViews()
+        setupListeners()
         setupObserver()
         setupRequest()
-        initialize()
     }
-
-    open fun setupListeners() {
-    }
-
 
     open fun initialize() {
+
 
     }
 
@@ -35,11 +32,15 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
 
     }
 
-    open fun setupRequest() {
+    open fun setupListeners() {
+    }
+
+
+    open fun setupObserver() {
 
     }
 
-    open fun setupObserver() {
+    open fun setupRequest() {
 
     }
 }

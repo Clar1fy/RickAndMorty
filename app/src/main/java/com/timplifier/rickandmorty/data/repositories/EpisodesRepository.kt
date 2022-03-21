@@ -2,7 +2,7 @@ package com.timplifier.rickandmorty.data.repositories
 
 import androidx.lifecycle.liveData
 import com.timplifier.rickandmorty.common.resource.Resource
-import com.timplifier.rickandmorty.data.remote.apis.EpisodesApiService
+import com.timplifier.rickandmorty.data.remote.apiservices.EpisodesApiService
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 

@@ -16,6 +16,7 @@ object Dependencies {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
         const val viewBindingPropertyDelegate =
             "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"
+        const val appCompat = "androidx.appcompat:appcompat:1.4.1"
     }
 
     object Core {
