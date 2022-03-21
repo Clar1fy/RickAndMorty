@@ -15,6 +15,11 @@ data class RickAndMortyCharacter(
     val type: String,
     @SerializedName("gender")
     val gender: String,
+    @SerializedName("origin")
+    val origin: Origin,
+    @SerializedName("location")
+
+    val location: Location,
     @SerializedName("image")
-    val image: String
+    val image: String,
 )

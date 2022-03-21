@@ -39,6 +39,23 @@ class CharactersAdapter(
         fun onBind(character: RickAndMortyCharacter) {
             binding.imCharacter.setImage(character.image)
             binding.tvCharacter.text = character.name
+            binding.tvStatus.text = character.status
+            binding.tvSpecies.text = character.species
+            binding.tvLastKnownLocation.text = character.location.toString()
+            binding.tvFirstLocation.text = character.origin.toString()
+when(character.status) {
+    "Alive" -> {
+        binding.imStatus.setImageDrawable()
+    }
+    "Dead" -> {
+        binding.imStatus.setImageDrawable()
+    }
+    "Unknown" -> {
+        binding.imStatus.setImageDrawable()
+    }
+}
+
+
             binding.root.setOnClickListener {
                 onItemClick(character.id)
             }

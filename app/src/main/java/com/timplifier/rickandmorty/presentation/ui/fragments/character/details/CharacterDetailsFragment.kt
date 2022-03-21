@@ -11,7 +11,6 @@ import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.common.extensions.setImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import com.timplifier.rickandmorty.presentation.ui.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

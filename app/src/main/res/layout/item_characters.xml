@@ -10,8 +10,9 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/CardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@android:color/darker_gray"
+
+        android:layout_height="wrap_content"
+        android:backgroundTint="#3d3e43"
         android:elevation="20dp"
         app:cardCornerRadius="10dp">
 
@@ -21,8 +22,9 @@
 
             <ImageView
                 android:id="@+id/im_character"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -35,9 +37,109 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/proxima_bold"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="25sp"
                 app:layout_constraintStart_toEndOf="@id/im_character"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem" />
+
+            <ImageView
+                android:id="@+id/im_status"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintStart_toEndOf="@id/im_character"
+                app:layout_constraintTop_toBottomOf="@id/tv_character" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="3dp"
+                android:fontFamily="@font/proxima_bold"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/dash"
+                app:layout_constraintStart_toEndOf="@id/im_status"
+                app:layout_constraintTop_toBottomOf="@id/tv_character"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/dash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/proxima_bold"
+
+                android:text="@string/dash"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_location"
+                app:layout_constraintEnd_toStartOf="@id/tv_species"
+                app:layout_constraintStart_toEndOf="@id/tv_status"
+                app:layout_constraintTop_toBottomOf="@id/tv_character" />
+
+
+            <TextView
+                android:id="@+id/tv_species"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/proxima_bold"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@id/dash"
+                app:layout_constraintTop_toBottomOf="@id/tv_character"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/proxima_regular"
+                android:text="@string/last_known_location"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/im_character"
+                app:layout_constraintTop_toBottomOf="@id/tv_species" />
+
+            <TextView
+                android:id="@+id/tv_last_known_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/proxima_regular"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/im_character"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/tv_first_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/proxima_regular"
+                android:text="@string/first_seen_in"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/im_character"
+                app:layout_constraintTop_toBottomOf="@id/tv_last_known_location" />
+
+            <TextView
+                android:id="@+id/tv_first_seen_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/proxima_regular"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/im_character"
+                app:layout_constraintTop_toBottomOf="@id/tv_first_location"
                 tools:text="@tools:sample/lorem" />
 
 
