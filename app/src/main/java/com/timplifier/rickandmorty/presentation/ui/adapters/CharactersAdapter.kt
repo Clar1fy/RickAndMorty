@@ -3,6 +3,7 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.common.extensions.setImage
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
@@ -43,17 +44,17 @@ class CharactersAdapter(
             binding.tvSpecies.text = character.species
             binding.tvLastKnownLocation.text = character.location.toString()
             binding.tvFirstLocation.text = character.origin.toString()
-when(character.status) {
-    "Alive" -> {
-        binding.imStatus.setImageDrawable()
-    }
-    "Dead" -> {
-        binding.imStatus.setImageDrawable()
-    }
-    "Unknown" -> {
-        binding.imStatus.setImageDrawable()
-    }
-}
+            when (character.status) {
+                "Alive" -> {
+                    binding.imStatus.setImageResource(R.drawable.alive_status)
+                }
+                "Dead" -> {
+                    binding.imStatus.setImageResource(R.drawable.dead_status)
+                }
+                "Unknown" -> {
+                    binding.imStatus.setImageResource(R.drawable.unknown_status)
+                }
+            }
 
 
             binding.root.setOnClickListener {
