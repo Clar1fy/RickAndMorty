@@ -1,15 +1,17 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character.details
 
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.setImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
+import com.timplifier.rickandmorty.presentation.ui.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -21,17 +23,11 @@ class CharacterDetailsFragment :
     override val binding by viewBinding(FragmentCharacterDetailsBinding::bind)
     override val viewModel: CharacterDetailsViewModel by viewModels()
     private val args: CharacterDetailsFragmentArgs by navArgs()
-    private val adapter = CharactersAdapter(this::onClick)
 
 
     override fun setupViews() {
-        setupAdapter()
     }
 
-    private fun setupAdapter() {
-
-        binding.recyclerview.adapter = adapter
-    }
 
     override fun setupObserver() {
         subscribeToCharacters()
@@ -52,10 +48,9 @@ class CharacterDetailsFragment :
 
                     }
                     is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.setList(it1)
-                        }
-
-
+                        (activity as AppCompatActivity).supportActionBar?.title = it.data!!.name
+                        binding.tvCharacter.text = it.data!!.name
+                        binding.imCharacter.setImage(it.data.image)
                     }
                 }
             }

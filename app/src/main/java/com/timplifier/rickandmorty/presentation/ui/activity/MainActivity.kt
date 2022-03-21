@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             R.id.locationsFragment
         ).build()
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
+        setSupportActionBar(binding.toolbar)
 
     }
 }
