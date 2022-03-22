@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/episodes_unpressed.xml" value="0.1" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/ic_morty_1.xml" value="0.1" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/ic_play_unpressed.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/ic_rick.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/location_unpressed.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/navigation_character_selector.xml" value="0.1" />
@@ -11,6 +14,7 @@
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/navigation_episodes_selector.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/navigation_location_selector.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/rick_unpressed.xml" value="0.1" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/drawable/rick_unpressed2.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/layout/fragment_character_details.xml" value="0.16111111111111112" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/RickAndMorty2/app/src/main/res/layout/fragment_characters.xml" value="0.175" />
