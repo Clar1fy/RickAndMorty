@@ -8,4 +8,13 @@
     <string name="first_seen_in">First seen in:</string>
     <string name="last_known_location">Last known location:</string>
     <string name="dash">-</string>
+    <string name="episode_s_name">Episode\'s name:</string>
+    <string name="episode_s_air_date">Episode\'s air date</string>
+    <string name="episode_s_code">Episode\'s code:</string>
+    <string name="episode_s_air_datet">Episode\'s air date:</string>
+    <string name="image_for_character_s_avatar">image for character\'s avatar</string>
+    <string name="image_for_character_s_status">image for character\'s status</string>
+    <string name="location_s_name">Location\'s name:</string>
+    <string name="dimension_where_the_location_is_located">Dimension where the location is located:</string>
+    <string name="type">Type:</string>
 </resources>

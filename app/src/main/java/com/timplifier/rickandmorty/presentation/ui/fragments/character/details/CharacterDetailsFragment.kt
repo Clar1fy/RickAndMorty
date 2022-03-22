@@ -1,7 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character.details
 
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
