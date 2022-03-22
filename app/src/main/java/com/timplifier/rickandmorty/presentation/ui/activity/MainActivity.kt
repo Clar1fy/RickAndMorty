@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         ).build()
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
 
+        binding.bottomNavigationView.itemIconTintList = null
+
 
     }
 }
