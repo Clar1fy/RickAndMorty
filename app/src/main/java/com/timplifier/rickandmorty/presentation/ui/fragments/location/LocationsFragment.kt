@@ -44,7 +44,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
                         Log.e("gaypop", it.message.toString())
                     }
                     is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.setList(it1) }
+                        it.data?.results?.let { it1 -> adapter.submitList(it1) }
 
                     }
 

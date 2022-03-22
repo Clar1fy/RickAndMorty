@@ -47,7 +47,7 @@ class EpisodesFragment :
 
                     }
                     is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.setList(it1) }
+                        it.data?.results?.let { it1 -> adapter.submitList(it1) }
                     }
                 }
             }

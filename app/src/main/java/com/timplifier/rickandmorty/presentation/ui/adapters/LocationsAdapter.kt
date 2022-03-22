@@ -2,12 +2,14 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
 import com.timplifier.rickandmorty.databinding.ItemLocationsBinding
+import com.timplifier.rickandmorty.presentation.ui.adapters.diffutils.LocationsDiffUtil
 
-class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.LocationsViewHolder>() {
-    private var list: List<RickAndMortyLocation> = ArrayList()
+class LocationsAdapter :
+    ListAdapter<RickAndMortyLocation, LocationsAdapter.LocationsViewHolder>(LocationsDiffUtil()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHolder =
@@ -21,22 +23,17 @@ class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.LocationsViewHold
 
 
     override fun onBindViewHolder(holder: LocationsViewHolder, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position))
     }
 
-    override fun getItemCount(): Int = list.size
-
-    fun setList(list: List<RickAndMortyLocation>) {
-        this.list = list
-        notifyDataSetChanged()
-    }
 
     class LocationsViewHolder(private val binding: ItemLocationsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(rickAndMortyLocation: RickAndMortyLocation) {
-            binding.tvName.text = rickAndMortyLocation.name
-            binding.tvType.text = rickAndMortyLocation.type
-            binding.tvDimension.text = rickAndMortyLocation.dimension
+            binding.tvLocationName.text = rickAndMortyLocation.name
+            binding.tvLocationType.text = rickAndMortyLocation.type
+            binding.tvDimensionName.text = rickAndMortyLocation.dimension
+
 
         }
 

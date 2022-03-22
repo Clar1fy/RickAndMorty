@@ -19,14 +19,15 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 ) {
     override val binding by viewBinding(FragmentCharactersBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
-    private val characterAdapter = CharactersAdapter(this::onItemClick)
 
+
+    private val characterListAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
     }
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = characterAdapter
+        binding.recyclerview.adapter = characterListAdapter
     }
 
 
@@ -48,7 +49,13 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
                     }
                     is Resource.Success -> {
-                        it.data?.results?.let { it1 -> characterAdapter.setList(it1) }
+                        it.data?.results?.let { it1 ->
+                            // characterAdapter.setList(it1)
+
+                            characterListAdapter.submitList(it1)
+
+                        }
+
                     }
 
                 }

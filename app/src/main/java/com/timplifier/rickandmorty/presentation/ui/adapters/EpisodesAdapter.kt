@@ -2,13 +2,14 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.data.remote.dtos.episode.RickAndMortyEpisode
 import com.timplifier.rickandmorty.databinding.ItemEpisodesBinding
+import com.timplifier.rickandmorty.presentation.ui.adapters.diffutils.EpisodesDiffUtil
 
-class EpisodesAdapter : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>() {
-    private var list: List<RickAndMortyEpisode> = ArrayList()
-
+class EpisodesAdapter :
+    ListAdapter<RickAndMortyEpisode, EpisodesAdapter.EpisodeViewHolder>(EpisodesDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder =
         EpisodeViewHolder(
             ItemEpisodesBinding.inflate(
@@ -18,30 +19,23 @@ class EpisodesAdapter : RecyclerView.Adapter<EpisodesAdapter.EpisodeViewHolder>(
             )
         )
 
-
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(getItem(position))
     }
 
-    override fun getItemCount(): Int =
-        list.size
-
-    fun setList(list: List<RickAndMortyEpisode>) {
-        this.list = list
-        notifyDataSetChanged()
-    }
 
     inner class EpisodeViewHolder(private val binding: ItemEpisodesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(rickAndMortyEpisode: RickAndMortyEpisode) {
+        fun onBind(episode: RickAndMortyEpisode) {
 
-            binding.tvName.text = rickAndMortyEpisode.name
-            binding.tvAirDate.text = rickAndMortyEpisode.air_date
-            binding.tvEpisode.text = rickAndMortyEpisode.episode
-
-
+            binding.apply {
+                tvEpisodeName.text = episode.name
+                tvAirDate.text = episode.air_date
+                tvEpisodeCode.text = episode.episode
+            }
         }
 
     }
+
 
 }
