@@ -1,6 +1,7 @@
 package com.timplifier.rickandmorty.data.remote.dtos.character
 
 import com.google.gson.annotations.SerializedName
+import com.timplifier.rickandmorty.base.BaseDiffModel
 
 data class RickAndMortyCharacter(
     @SerializedName("id")
@@ -22,4 +23,4 @@ data class RickAndMortyCharacter(
     val location: Location,
     @SerializedName("image")
     val image: String,
-)
+) : BaseDiffModel
