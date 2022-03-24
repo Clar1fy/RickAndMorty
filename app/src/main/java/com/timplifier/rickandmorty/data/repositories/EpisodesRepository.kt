@@ -1,22 +1,18 @@
 package com.timplifier.rickandmorty.data.repositories
 
-import androidx.lifecycle.liveData
-import com.timplifier.rickandmorty.common.resource.Resource
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.timplifier.rickandmorty.data.remote.apiservices.EpisodesApiService
-import kotlinx.coroutines.Dispatchers
+import com.timplifier.rickandmorty.data.remote.pagingsources.EpisodePagingSource
 import javax.inject.Inject
 
 class EpisodesRepository @Inject constructor(
     private val episodesApiService: EpisodesApiService
 ) {
-    fun fetchEpisodes() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
+    fun fetchEpisodes() = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        EpisodePagingSource(episodesApiService)
+    }.flow
 
-        try {
-            emit(Resource.Success(episodesApiService.fetchEpisodes()))
-        } catch (ioException: Exception) {
-            emit(Resource.Error(null, ioException.localizedMessage))
-        }
-
-    }
 }
