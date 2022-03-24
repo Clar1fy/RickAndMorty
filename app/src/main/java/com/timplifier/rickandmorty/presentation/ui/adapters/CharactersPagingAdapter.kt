@@ -1,5 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.adapters
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,15 +12,28 @@ class CharactersPagingAdapter() :
     PagingDataAdapter<RickAndMortyCharacter, CharactersPagingAdapter.CharactersViewHolder>(
         BaseDiffUtil()
     ) {
-    inner class CharactersViewHolder(private val binding: ItemCharactersBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder =
+        CharactersViewHolder(
+            ItemCharactersBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
 
-    }
 
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
+        holder.onBind(getItem(position))
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
-        TODO("Not yet implemented")
+    inner class CharactersViewHolder(private val binding: ItemCharactersBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun onBind(character: RickAndMortyCharacter?) {
+
+
+        }
+
+
     }
 }
