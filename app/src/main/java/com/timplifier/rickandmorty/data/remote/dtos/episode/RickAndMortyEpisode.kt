@@ -1,6 +1,7 @@
 package com.timplifier.rickandmorty.data.remote.dtos.episode
 
 import com.google.gson.annotations.SerializedName
+import com.timplifier.rickandmorty.base.BaseDiffModel
 
 data class RickAndMortyEpisode(
     @SerializedName("id")
@@ -11,4 +12,4 @@ data class RickAndMortyEpisode(
     val air_date: String,
     @SerializedName("episode")
     val episode: String
-)
+) : BaseDiffModel

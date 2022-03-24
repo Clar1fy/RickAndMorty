@@ -2,22 +2,23 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.R
+import com.timplifier.rickandmorty.base.BaseDiffUtil
 import com.timplifier.rickandmorty.common.extensions.setImage
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
-import com.timplifier.rickandmorty.presentation.ui.adapters.diffutils.CharactersDiffUtil
 
 class CharactersAdapter(
     private val onItemClick: (id: Int) -> Unit
 ) :
-    ListAdapter<RickAndMortyCharacter, CharactersAdapter.CharactersViewHolder>(
-        CharactersDiffUtil()
+    PagingDataAdapter<RickAndMortyCharacter, CharactersAdapter.CharactersViewHolder>(
+        BaseDiffUtil()
     ) {
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        getItem(position)?.let { holder.onBind(it) }
+
     }
 
 
@@ -52,7 +53,6 @@ class CharactersAdapter(
                         imStatus.setImageResource(R.drawable.unknown_status)
                     }
                 }
-
 
                 root.setOnClickListener {
                     onItemClick(character.id)

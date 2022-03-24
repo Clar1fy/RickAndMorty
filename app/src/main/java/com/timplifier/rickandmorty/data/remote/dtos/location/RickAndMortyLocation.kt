@@ -1,6 +1,7 @@
 package com.timplifier.rickandmorty.data.remote.dtos.location
 
 import com.google.gson.annotations.SerializedName
+import com.timplifier.rickandmorty.base.BaseDiffModel
 
 data class RickAndMortyLocation(
     @SerializedName("id")
@@ -11,4 +12,4 @@ data class RickAndMortyLocation(
     val type: String,
     @SerializedName("dimension")
     val dimension: String
-)
+) : BaseDiffModel
