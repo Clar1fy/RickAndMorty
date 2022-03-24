@@ -1,15 +1,14 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
+import com.timplifier.rickandmorty.presentation.ui.adapters.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -28,7 +27,11 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = characterListAdapter
+        binding.recyclerview.adapter = characterListAdapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(),
+            footer = PagingLoadStateAdapter()
+
+        )
     }
 
 
@@ -37,19 +40,13 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun subscribeToCharacters() {
+
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchCharacters().collectLatest {
                 characterListAdapter.submitData(it)
 
 
-                characterListAdapter.addLoadStateListener { loadState ->
-                    if (loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
-
-                        binding.progressBar.visibility = View.VISIBLE
-                    } else {
-                        binding.progressBar.visibility = View.GONE
-                    }
-                }
             }
 
         }

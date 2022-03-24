@@ -2,11 +2,13 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.episode
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.databinding.FragmentEpisodesBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.EpisodesAdapter
+import com.timplifier.rickandmorty.presentation.ui.adapters.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,7 +26,11 @@ class EpisodesFragment :
 
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = adapter
+        binding.recyclerview.adapter = adapter.withLoadStateHeaderAndFooter(
+            header = PagingLoadStateAdapter(),
+            footer = PagingLoadStateAdapter()
+
+        )
     }
 
 
@@ -38,6 +44,9 @@ class EpisodesFragment :
             viewModel.fetchEpisodes().collectLatest {
                 adapter.submitData(it)
 
+                adapter.addLoadStateListener { loadState ->
+                    binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
+                }
             }
         }
 
