@@ -40,8 +40,8 @@ class CharactersAdapter(
                 tvCharacter.text = character.name
                 tvStatus.text = character.status
                 tvSpecies.text = character.species
-                //      tvLastKnownLocation.text = character.location.toString()
-                //     tvFirstLocation.text = character.origin.toString()
+                tvLastKnownLocation.text = character.location.name
+                tvFirstSeenIn.text = character.origin.name
                 when (character.status) {
                     "Alive" -> {
                         imStatus.setImageResource(R.drawable.alive_status)

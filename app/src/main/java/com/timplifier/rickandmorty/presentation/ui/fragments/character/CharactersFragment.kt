@@ -1,8 +1,10 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
@@ -39,6 +41,15 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
             viewModel.fetchCharacters().collectLatest {
                 characterListAdapter.submitData(it)
 
+
+                characterListAdapter.addLoadStateListener { loadState ->
+                    if (loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading) {
+
+                        binding.progressBar.visibility = View.VISIBLE
+                    } else {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                }
             }
 
         }
