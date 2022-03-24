@@ -1,15 +1,14 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.episode
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
-import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentEpisodesBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.EpisodesAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,23 +34,11 @@ class EpisodesFragment :
 
     private fun subscribeToEpisodes() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchEpisodes().observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> {
-                        Log.e("GayPop", "Loading ")
-                    }
 
-                    is Resource.Error -> {
-                        Log.e("GayPop", it.message.toString())
+            viewModel.fetchEpisodes().collectLatest {
+                adapter.submitData(it)
 
-
-                    }
-                    is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.submitList(it1) }
-                    }
-                }
             }
-
         }
 
     }

@@ -1,15 +1,14 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
-import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,20 +34,9 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
     private fun subscribeToLocations() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchLocations().observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Loading -> {
-                        Log.e("gaypop", "subscribeToLocations: ")
-                    }
-                    is Resource.Error -> {
-                        Log.e("gaypop", it.message.toString())
-                    }
-                    is Resource.Success -> {
-                        it.data?.results?.let { it1 -> adapter.submitList(it1) }
+            viewModel.fetchLocations().collectLatest {
+                adapter.submitData(it)
 
-                    }
-
-                }
             }
         }
     }

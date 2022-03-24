@@ -5,7 +5,7 @@ import com.timplifier.rickandmorty.base.BaseDiffModel
 
 data class RickAndMortyEpisode(
     @SerializedName("id")
-    val id: Int,
+    override val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("air_date")
