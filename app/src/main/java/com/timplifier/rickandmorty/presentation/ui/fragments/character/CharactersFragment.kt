@@ -19,18 +19,14 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 ) {
     override val binding by viewBinding(FragmentCharactersBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
-
-
     private val characterListAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
     }
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = characterListAdapter.withLoadStateHeaderAndFooter(
-            header = PagingLoadStateAdapter(),
+        binding.recyclerview.adapter = characterListAdapter.withLoadStateFooter(
             footer = PagingLoadStateAdapter()
-
         )
     }
 
@@ -40,8 +36,6 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun subscribeToCharacters() {
-
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchCharacters().collectLatest {
                 characterListAdapter.submitData(it)

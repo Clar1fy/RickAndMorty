@@ -26,11 +26,8 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
     private fun setupAdapter() {
 
-        binding.recyclerview.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = PagingLoadStateAdapter(),
+        binding.recyclerview.adapter = adapter.withLoadStateFooter(
             footer = PagingLoadStateAdapter()
-
-
         )
     }
 
@@ -42,8 +39,6 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchLocations().collectLatest {
                 adapter.submitData(it)
-
-
             }
         }
     }

@@ -26,11 +26,9 @@ class CharacterDetailsFragment :
     override fun setupViews() {
     }
 
-
     override fun setupObserver() {
         subscribeToCharacters()
     }
-
 
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {

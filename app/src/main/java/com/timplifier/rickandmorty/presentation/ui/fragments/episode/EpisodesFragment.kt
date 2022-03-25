@@ -21,12 +21,12 @@ class EpisodesFragment :
     override fun setupViews() {
         setupAdapter()
 
+
     }
 
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = adapter.withLoadStateHeaderAndFooter(
-            header = PagingLoadStateAdapter(),
+        binding.recyclerview.adapter = adapter.withLoadStateFooter(
             footer = PagingLoadStateAdapter()
 
         )

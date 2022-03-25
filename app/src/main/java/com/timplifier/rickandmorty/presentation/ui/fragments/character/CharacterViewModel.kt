@@ -11,8 +11,6 @@ import javax.inject.Inject
 class CharacterViewModel @Inject constructor(
     private val characterRepository: CharacterRepository
 ) : BaseViewModel() {
-
-
     fun fetchCharacters() =
         characterRepository.fetchCharacters().cachedIn(viewModelScope)
 

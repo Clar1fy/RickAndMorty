@@ -23,24 +23,25 @@ abstract class BaseFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
         setupRequest()
     }
 
-    open fun initialize() {
+    protected open fun initialize() {
 
 
     }
 
-    open fun setupViews() {
+    protected open fun setupViews() {
+
 
     }
 
-    open fun setupListeners() {
+    protected open fun setupListeners() {
     }
 
 
-    open fun setupObserver() {
+    protected open fun setupObserver() {
 
     }
 
-    open fun setupRequest() {
+    protected open fun setupRequest() {
 
     }
 }

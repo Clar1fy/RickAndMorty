@@ -19,7 +19,6 @@ class CharacterRepository @Inject constructor(
             CharacterPagingSource(charactersApiService)
         }.flow
 
-
     fun fetchSingleCharacter(id: Int) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
 
