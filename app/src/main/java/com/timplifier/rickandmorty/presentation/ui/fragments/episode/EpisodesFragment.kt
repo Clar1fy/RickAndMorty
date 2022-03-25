@@ -2,7 +2,6 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.episode
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
@@ -44,9 +43,6 @@ class EpisodesFragment :
             viewModel.fetchEpisodes().collectLatest {
                 adapter.submitData(it)
 
-                adapter.addLoadStateListener { loadState ->
-                    binding.progressBar.isVisible = loadState.refresh is LoadState.Loading
-                }
             }
         }
 
