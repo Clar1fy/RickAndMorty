@@ -18,7 +18,7 @@ class EpisodeViewModel @Inject constructor(
     private val episodesRepository: EpisodesRepository
 ) : BaseViewModel() {
     var page: Int = 0
-    private var isLoading = false
+    var isLoading = false
     private val _episodesState = MutableLiveData<ArrayList<RickAndMortyEpisode>>()
     var episodesState: LiveData<ArrayList<RickAndMortyEpisode>> = _episodesState
     fun fetchEpisodes() {

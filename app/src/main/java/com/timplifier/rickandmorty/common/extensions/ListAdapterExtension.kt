@@ -8,6 +8,8 @@ fun <T> ListAdapter<ListAdapter, RecyclerView.ViewHolder>.setList(
     newList: List<T>,
     currentList: List<T>
 ) {
-    newList == currentList
+    var list: List<T> = ArrayList()
+
+    this.list = list
 
 }

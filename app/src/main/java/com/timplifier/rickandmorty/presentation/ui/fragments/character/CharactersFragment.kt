@@ -3,12 +3,13 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.character
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
-import com.timplifier.rickandmorty.presentation.ui.adapters.PagingLoadStateAdapter
+import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -25,9 +26,17 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun setupAdapter() {
-        binding.recyclerview.adapter = characterListAdapter.withLoadStateFooter(
-            footer = PagingLoadStateAdapter()
-        )
+        binding.recyclerview.apply {
+            adapter = characterListAdapter
+            val linearLayoutManager = LinearLayoutManager(context)
+            addOnScrollListener(object :
+                PaginationScrollListener(linearLayoutManager, { viewModel.fetchCharacters() }) {
+                override fun isLoading() = viewModel.isLoading
+            }
+            )
+
+
+        }
     }
 
 
@@ -38,7 +47,6 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchCharacters().collectLatest {
-                characterListAdapter.submitData(it)
                 characterListAdapter.su
 
 
