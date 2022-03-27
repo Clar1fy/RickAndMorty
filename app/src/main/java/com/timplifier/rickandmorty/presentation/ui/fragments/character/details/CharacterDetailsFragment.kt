@@ -7,7 +7,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
-import com.timplifier.rickandmorty.common.extensions.setImage
+import com.timplifier.rickandmorty.common.extensions.setCircularImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +43,7 @@ class CharacterDetailsFragment :
                     }
                     is Resource.Success -> {
                         binding.apply {
-                            it.data?.image?.let { it1 -> imCharacter.setImage(it1) }
+                            it.data?.image?.let { it1 -> imCharacter.setCircularImage(it1) }
                             tvCharacter.text = it.data?.name
                         }
                     }
