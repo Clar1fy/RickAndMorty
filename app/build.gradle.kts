@@ -97,7 +97,5 @@ dependencies {
     // SplashScreen
     implementation(Dependencies.SplashScreen.splashScreen)
 
-    // Paging
-    implementation(Dependencies.Paging.runtime)
 
 }

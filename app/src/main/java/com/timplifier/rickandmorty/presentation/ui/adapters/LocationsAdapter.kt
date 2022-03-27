@@ -2,14 +2,14 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.base.BaseDiffUtil
 import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
 import com.timplifier.rickandmorty.databinding.ItemLocationsBinding
 
 class LocationsAdapter :
-    PagingDataAdapter<RickAndMortyLocation, LocationsAdapter.LocationsViewHolder>(BaseDiffUtil()) {
+    ListAdapter<RickAndMortyLocation, LocationsAdapter.LocationsViewHolder>(BaseDiffUtil()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationsViewHolder =

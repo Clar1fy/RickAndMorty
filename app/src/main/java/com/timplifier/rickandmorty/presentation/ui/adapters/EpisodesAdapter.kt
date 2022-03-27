@@ -2,14 +2,14 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.base.BaseDiffUtil
 import com.timplifier.rickandmorty.data.remote.dtos.episode.RickAndMortyEpisode
 import com.timplifier.rickandmorty.databinding.ItemEpisodesBinding
 
 class EpisodesAdapter :
-    PagingDataAdapter<RickAndMortyEpisode, EpisodesAdapter.EpisodeViewHolder>(BaseDiffUtil()) {
+    ListAdapter<RickAndMortyEpisode, EpisodesAdapter.EpisodeViewHolder>(BaseDiffUtil()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder =
         EpisodeViewHolder(
             ItemEpisodesBinding.inflate(

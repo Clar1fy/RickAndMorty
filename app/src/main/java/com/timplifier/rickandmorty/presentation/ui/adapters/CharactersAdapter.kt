@@ -2,7 +2,7 @@ package com.timplifier.rickandmorty.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseDiffUtil
@@ -13,7 +13,7 @@ import com.timplifier.rickandmorty.databinding.ItemCharactersBinding
 class CharactersAdapter(
     private val onItemClick: (id: Int) -> Unit
 ) :
-    PagingDataAdapter<RickAndMortyCharacter, CharactersAdapter.CharactersViewHolder>(
+    ListAdapter<RickAndMortyCharacter, CharactersAdapter.CharactersViewHolder>(
         BaseDiffUtil()
     ) {
     override fun onBindViewHolder(holder: CharactersViewHolder, position: Int) {
