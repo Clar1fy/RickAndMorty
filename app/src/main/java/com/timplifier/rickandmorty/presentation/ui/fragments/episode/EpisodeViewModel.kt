@@ -19,6 +19,7 @@ class EpisodeViewModel @Inject constructor(
 ) : BaseViewModel() {
     var isLoading: Boolean = false
     private var page: Int = 0
+
     private val _episodesState = MutableLiveData<ArrayList<RickAndMortyEpisode>>()
     var episodesState: LiveData<ArrayList<RickAndMortyEpisode>> = _episodesState
     fun fetchEpisodes() {
@@ -26,26 +27,33 @@ class EpisodeViewModel @Inject constructor(
         viewModelScope.launch {
             episodesRepository.fetchEpisodes(page).collect {
                 when (it) {
+
                     is Resource.Loading -> {
                         isLoading = true
                     }
                     is Resource.Error -> {
-                        Log.e("anime", it.message.toString())
+                        Log.e("An Error in CharacterViewModel occurred", it.message.toString())
                     }
                     is Resource.Success -> {
                         isLoading = false
+
+
                         _episodesState.postValue(it.data?.results)
+
+
                         page++
+
                     }
                 }
             }
-
         }
 
     }
 
+
     init {
-        _episodesState.value?.let {
+
+        if (_episodesState.value == null) {
             fetchEpisodes()
         }
     }
