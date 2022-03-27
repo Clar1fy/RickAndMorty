@@ -22,7 +22,8 @@ class CharacterViewModel @Inject constructor(
 
     private val _characterState = MutableLiveData<ArrayList<RickAndMortyCharacter>>()
     var characterState: LiveData<ArrayList<RickAndMortyCharacter>> = _characterState
-    fun fetchCharacters() =
+    fun fetchCharacters() {
+        isLoading = true
         viewModelScope.launch {
             characterRepository.fetchCharacters(page).collect {
                 when (it) {
@@ -34,16 +35,20 @@ class CharacterViewModel @Inject constructor(
                         Log.e("An Error in CharacterViewModel occurred", it.message.toString())
                     }
                     is Resource.Success -> {
-                        isLoading = true
+                        isLoading = false
+
 
                         _characterState.postValue(it.data?.results)
 
 
                         page++
+
                     }
                 }
             }
         }
+
+    }
 
     init {
 
@@ -55,4 +60,7 @@ class CharacterViewModel @Inject constructor(
     }
 
 }
+
+
+
 

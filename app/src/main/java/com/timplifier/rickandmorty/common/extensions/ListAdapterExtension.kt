@@ -4,12 +4,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 
-fun <T> ListAdapter<ListAdapter, RecyclerView.ViewHolder>.setList(
-    newList: List<T>,
-    currentList: List<T>
-) {
-    var list: List<T> = ArrayList()
-
-    this.list = list
-
+fun <T, D : RecyclerView.ViewHolder> ListAdapter<T, D>.submitData(data: List<T>) {
+    val newList = ArrayList<T>(currentList)
+    newList.addAll(data)
+    submitList(
+        newList
+    )
 }

@@ -22,6 +22,7 @@ class LocationViewModel @Inject constructor(
     private val _locationsState = MutableLiveData<ArrayList<RickAndMortyLocation>>()
     var locationState: LiveData<ArrayList<RickAndMortyLocation>> = _locationsState
     fun fetchLocations() {
+        isLoading = true
         viewModelScope.launch {
             locationsRepository.fetchLocations(page).collect {
                 when (it) {
@@ -32,6 +33,7 @@ class LocationViewModel @Inject constructor(
                         Log.e("anime", it.message.toString())
                     }
                     is Resource.Success -> {
+                        isLoading = false
                         _locationsState.postValue(it.data?.results)
                         page++
                     }

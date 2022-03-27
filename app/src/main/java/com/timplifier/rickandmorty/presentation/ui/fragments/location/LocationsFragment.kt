@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,6 +36,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
                 override fun isLoading() = viewModel.isLoading
             })
+
         }
     }
 
@@ -45,7 +46,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
     private fun subscribeToLocations() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchLocations().collectLatest {
+            viewModel.locationState.observe(viewLifecycleOwner) {
                 adapter.submitData(it)
             }
         }

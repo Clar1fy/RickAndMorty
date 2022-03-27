@@ -11,7 +11,6 @@ import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -46,11 +45,12 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchCharacters().collectLatest {
-                characterListAdapter.su
+            viewModel.characterState.observe(viewLifecycleOwner) {
 
 
+                characterListAdapter.submitList(it)
             }
+
 
         }
     }

@@ -22,6 +22,7 @@ class EpisodeViewModel @Inject constructor(
     private val _episodesState = MutableLiveData<ArrayList<RickAndMortyEpisode>>()
     var episodesState: LiveData<ArrayList<RickAndMortyEpisode>> = _episodesState
     fun fetchEpisodes() {
+        isLoading = true
         viewModelScope.launch {
             episodesRepository.fetchEpisodes(page).collect {
 
@@ -36,6 +37,7 @@ class EpisodeViewModel @Inject constructor(
 
                         _episodesState.postValue(it.data?.results)
 
+                        isLoading = false
 
                         page++
                     }
