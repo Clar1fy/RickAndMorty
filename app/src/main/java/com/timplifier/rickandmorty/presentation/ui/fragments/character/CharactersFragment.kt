@@ -39,6 +39,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchCharacters().collectLatest {
                 characterListAdapter.submitData(it)
+                characterListAdapter.su
 
 
             }

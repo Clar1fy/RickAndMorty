@@ -1,35 +1,35 @@
 package com.timplifier.rickandmorty.presentation.ui.adapters
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.paging.LoadState
-import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.timplifier.rickandmorty.databinding.PagingLoadStateFooterBinding
+import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 
-class PagingLoadStateAdapter : LoadStateAdapter<PagingLoadStateAdapter.LoadStateViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
-        return LoadStateViewHolder(
-            PagingLoadStateFooterBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+class PagingLoadStateAdapter : RecyclerView.Adapter<PagingLoadStateAdapter.LoadStateViewHolder>() {
+    private var list: List<RickAndMortyCharacter> = ArrayList()
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PagingLoadStateAdapter.LoadStateViewHolder {
+        TODO("Not yet implemented")
     }
 
-    override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
-        holder.onBind(loadState)
+    fun setList(list: List<RickAndMortyCharacter>) {
+        this.list = list
+
     }
 
-    inner class LoadStateViewHolder(private val binding: PagingLoadStateFooterBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun onBind(loadState: LoadState) {
+    override fun onBindViewHolder(
+        holder: PagingLoadStateAdapter.LoadStateViewHolder,
+        position: Int
+    ) {
+        TODO("Not yet implemented")
+    }
 
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
 
-            binding.progressBar.isVisible = loadState is LoadState.Loading
-        }
+    inner class LoadStateViewHolder : RecyclerView.ViewHolder {
 
     }
 }
