@@ -17,15 +17,14 @@ import javax.inject.Inject
 class EpisodeViewModel @Inject constructor(
     private val episodesRepository: EpisodesRepository
 ) : BaseViewModel() {
-    var page: Int = 0
-    var isLoading = false
+    var isLoading: Boolean = false
+    private var page: Int = 0
     private val _episodesState = MutableLiveData<ArrayList<RickAndMortyEpisode>>()
     var episodesState: LiveData<ArrayList<RickAndMortyEpisode>> = _episodesState
     fun fetchEpisodes() {
         isLoading = true
         viewModelScope.launch {
             episodesRepository.fetchEpisodes(page).collect {
-
                 when (it) {
                     is Resource.Loading -> {
                         isLoading = true
@@ -34,11 +33,8 @@ class EpisodeViewModel @Inject constructor(
                         Log.e("anime", it.message.toString())
                     }
                     is Resource.Success -> {
-
-                        _episodesState.postValue(it.data?.results)
-
                         isLoading = false
-
+                        _episodesState.postValue(it.data?.results)
                         page++
                     }
                 }

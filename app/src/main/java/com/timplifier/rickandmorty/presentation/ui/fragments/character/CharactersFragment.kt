@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
@@ -19,15 +20,16 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 ) {
     override val binding by viewBinding(FragmentCharactersBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
-    private val characterListAdapter = CharactersAdapter(this::onItemClick)
+    private val charactersAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
     }
 
     private fun setupAdapter() {
         binding.recyclerview.apply {
-            adapter = characterListAdapter
+            adapter = charactersAdapter
             val linearLayoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
             addOnScrollListener(object :
                 PaginationScrollListener(linearLayoutManager, { viewModel.fetchCharacters() }) {
                 override fun isLoading() = viewModel.isLoading
@@ -46,9 +48,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.characterState.observe(viewLifecycleOwner) {
-
-
-                characterListAdapter.submitList(it)
+                charactersAdapter.submitData(it)
             }
 
 

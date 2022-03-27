@@ -18,7 +18,7 @@ class LocationViewModel @Inject constructor(
     private val locationsRepository: LocationsRepository
 ) : BaseViewModel() {
     var page: Int = 0
-    var isLoading = false
+    var isLoading: Boolean = false
     private val _locationsState = MutableLiveData<ArrayList<RickAndMortyLocation>>()
     var locationState: LiveData<ArrayList<RickAndMortyLocation>> = _locationsState
     fun fetchLocations() {

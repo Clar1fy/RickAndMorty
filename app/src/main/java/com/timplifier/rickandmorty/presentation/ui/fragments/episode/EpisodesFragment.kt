@@ -18,19 +18,18 @@ class EpisodesFragment :
     BaseFragment<FragmentEpisodesBinding, EpisodeViewModel>(R.layout.fragment_episodes) {
     override val binding by viewBinding(FragmentEpisodesBinding::bind)
     override val viewModel: EpisodeViewModel by viewModels()
-    private val adapter = EpisodesAdapter()
+    private val episodesAdapter = EpisodesAdapter()
+
     override fun setupViews() {
         setupAdapter()
-
-
     }
-
 
     private fun setupAdapter() {
         binding.recyclerview.apply {
 
+            adapter = episodesAdapter
             val linearLayoutManager = LinearLayoutManager(context)
-            adapter = adapter
+            layoutManager = linearLayoutManager
             addOnScrollListener(object :
                 PaginationScrollListener(linearLayoutManager, { viewModel.fetchEpisodes() }) {
                 override fun isLoading() = viewModel.isLoading
@@ -40,21 +39,16 @@ class EpisodesFragment :
 
     }
 
-
     override fun setupObserver() {
         subscribeToEpisodes()
     }
 
     private fun subscribeToEpisodes() {
         viewLifecycleOwner.lifecycleScope.launch {
-
             viewModel.episodesState.observe(viewLifecycleOwner) {
-                adapter.submitData(it)
-
-
+                episodesAdapter.submitData(it)
             }
         }
 
     }
-
 }

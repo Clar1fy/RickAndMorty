@@ -11,6 +11,7 @@ import com.timplifier.rickandmorty.common.extensions.setImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -32,24 +33,22 @@ class CharacterDetailsFragment :
 
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchSingleCharacter(args.characterId).observe(viewLifecycleOwner) {
+            viewModel.fetchSingleCharacter(args.characterId).collect {
                 when (it) {
                     is Resource.Loading -> {
-                        Log.e("GayPop", "Loading ")
+                        Log.e("anime", "Loading")
                     }
-
                     is Resource.Error -> {
-                        Log.e("GayPop", it.message.toString())
-
-
+                        Log.e("anime", it.message.toString())
                     }
                     is Resource.Success -> {
-                        binding.tvCharacter.text = it.data?.name
-                        it.data?.image?.let { it1 -> binding.imCharacter.setImage(it1) }
+                        binding.apply {
+                            it.data?.image?.let { it1 -> imCharacter.setImage(it1) }
+                            tvCharacter.text = it.data?.name
+                        }
                     }
                 }
             }
-
         }
     }
 

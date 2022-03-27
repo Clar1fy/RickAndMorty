@@ -19,18 +19,16 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 ) {
     override val viewModel: LocationViewModel by viewModels()
     override val binding by viewBinding(FragmentLocationsBinding::bind)
-    private val adapter = LocationsAdapter()
+    private val locationsAdapter = LocationsAdapter()
 
     override fun setupViews() {
         setupAdapter()
     }
 
     private fun setupAdapter() {
-
-
         binding.recyclerview.apply {
+            adapter = locationsAdapter
             val linearLayoutManager = LinearLayoutManager(context)
-            adapter = adapter
             addOnScrollListener(object :
                 PaginationScrollListener(linearLayoutManager, { viewModel.fetchLocations() }) {
 
@@ -47,7 +45,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     private fun subscribeToLocations() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.locationState.observe(viewLifecycleOwner) {
-                adapter.submitData(it)
+                locationsAdapter.submitData(it)
             }
         }
     }
