@@ -1,5 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -47,8 +48,11 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
+
             viewModel.characterState.observe(viewLifecycleOwner) {
                 charactersAdapter.submitData(it)
+                binding.progressbar.isVisible = viewModel.isLoading
+
             }
 
 

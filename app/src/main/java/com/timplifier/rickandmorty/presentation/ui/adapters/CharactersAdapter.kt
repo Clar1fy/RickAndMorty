@@ -47,7 +47,7 @@ class CharactersAdapter(
 
                     "Dead" -> imStatus.setImageResource(R.drawable.dead_status)
 
-                    "Unknown" -> imStatus.setImageResource(R.drawable.unknown_status)
+                    "unknown" -> imStatus.setImageResource(R.drawable.unknown_status)
 
                 }
 
