@@ -29,6 +29,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
         binding.recyclerview.apply {
             adapter = locationsAdapter
             val linearLayoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
             addOnScrollListener(object :
                 PaginationScrollListener(linearLayoutManager, { viewModel.fetchLocations() }) {
 

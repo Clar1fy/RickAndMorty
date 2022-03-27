@@ -43,15 +43,12 @@ class CharactersAdapter(
                 tvLastKnownLocation.text = character.location.name
                 tvFirstSeenIn.text = character.origin.name
                 when (character.status) {
-                    "Alive" -> {
-                        imStatus.setImageResource(R.drawable.alive_status)
-                    }
-                    "Dead" -> {
-                        imStatus.setImageResource(R.drawable.dead_status)
-                    }
-                    "Unknown" -> {
-                        imStatus.setImageResource(R.drawable.unknown_status)
-                    }
+                    "Alive" -> imStatus.setImageResource(R.drawable.alive_status)
+
+                    "Dead" -> imStatus.setImageResource(R.drawable.dead_status)
+
+                    "Unknown" -> imStatus.setImageResource(R.drawable.unknown_status)
+
                 }
 
                 root.setOnClickListener {
