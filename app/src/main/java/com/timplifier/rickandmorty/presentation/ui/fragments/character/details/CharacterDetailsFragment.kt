@@ -45,6 +45,7 @@ class CharacterDetailsFragment :
                         binding.apply {
                             it.data?.image?.let { it1 -> imCharacter.setCircularImage(it1) }
                             tvCharacter.text = it.data?.name
+                            tvGender.text = it.data?.gender
                         }
                     }
                 }

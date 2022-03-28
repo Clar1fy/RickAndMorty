@@ -1,159 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/black"
     android:orientation="horizontal"
     android:padding="12dp">
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/CardView"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:backgroundTint="#3d3e43"
-        android:elevation="20dp"
-        app:cardCornerRadius="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="300dp"
 
-            <ImageView
-                android:id="@+id/im_character"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="@string/image_for_character_s_avatar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+            app:contentScrim="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_character"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/proxima_bold"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@tools:sample/lorem" />
+                <ImageView
+                    android:id="@+id/im_character"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/im_status"
-                android:layout_width="7dp"
-                android:layout_height="7dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="10dp"
-                android:contentDescription="@string/image_for_character_s_status"
-                app:layout_constraintBottom_toTopOf="@id/tv_location"
-                app:layout_constraintEnd_toStartOf="@id/tv_status"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toBottomOf="@id/tv_character" />
+                <TextView
+                    android:id="@+id/tv_character"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/proxima_bold"
+                    android:textColor="@color/white"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
 
-            <TextView
-                android:id="@+id/tv_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="3dp"
-                android:fontFamily="@font/proxima_bold"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toStartOf="@id/dash"
-                app:layout_constraintStart_toEndOf="@id/im_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_character"
-                tools:text="@tools:sample/lorem" />
+                    app:layout_constraintTop_toBottomOf="@id/im_character"
+                    tools:text="@tools:sample/lorem" />
 
-            <TextView
-                android:id="@+id/dash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/proxima_bold"
-
-                android:text="@string/dash"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@id/tv_location"
-                app:layout_constraintEnd_toStartOf="@id/tv_species"
-                app:layout_constraintStart_toEndOf="@id/tv_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_character" />
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/proxima_regular"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_character"
+                    tools:text="@tools:sample/lorem" />
 
 
-            <TextView
-                android:id="@+id/tv_species"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/proxima_bold"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toEndOf="@id/dash"
-                app:layout_constraintTop_toBottomOf="@id/tv_character"
-                tools:text="@tools:sample/lorem" />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
 
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/proxima_regular"
-                android:text="@string/last_known_location"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toBottomOf="@id/tv_species" />
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_last_known_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/proxima_regular"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toBottomOf="@id/tv_location"
-                tools:text="@tools:sample/lorem" />
-
-            <TextView
-                android:id="@+id/tv_first_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/proxima_regular"
-                android:text="@string/first_seen_in"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toBottomOf="@id/tv_last_known_location" />
-
-            <TextView
-                android:id="@+id/tv_first_seen_in"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/proxima_regular"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintStart_toEndOf="@id/im_character"
-                app:layout_constraintTop_toBottomOf="@id/tv_first_location"
-                tools:text="@tools:sample/lorem" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+
+
+

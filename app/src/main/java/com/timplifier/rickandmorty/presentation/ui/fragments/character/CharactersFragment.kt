@@ -34,6 +34,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
             addOnScrollListener(object :
                 PaginationScrollListener(linearLayoutManager, { viewModel.fetchCharacters() }) {
                 override fun isLoading() = viewModel.isLoading
+
             }
             )
 
@@ -51,8 +52,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
             viewModel.characterState.observe(viewLifecycleOwner) {
                 charactersAdapter.submitData(it)
-                binding.progressbar.isVisible = viewModel.isLoading
 
+                binding.progressbar.isVisible = viewModel.isLoading
             }
 
 
