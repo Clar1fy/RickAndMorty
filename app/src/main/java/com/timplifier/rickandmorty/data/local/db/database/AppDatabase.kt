@@ -2,6 +2,8 @@ package com.timplifier.rickandmorty.data.local.db.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.timplifier.rickandmorty.data.local.db.converters.CharacterConverter
 import com.timplifier.rickandmorty.data.local.db.daos.CharacterDao
 import com.timplifier.rickandmorty.data.local.db.daos.EpisodeDao
 import com.timplifier.rickandmorty.data.local.db.daos.LocationDao
@@ -13,6 +15,7 @@ import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocatio
     entities = [RickAndMortyCharacter::class, RickAndMortyLocation::class, RickAndMortyEpisode::class],
     version = 1
 )
+@TypeConverters(CharacterConverter::class)
 
 
 abstract class AppDatabase : RoomDatabase() {
