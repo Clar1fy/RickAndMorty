@@ -46,7 +46,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     override fun setupRequest() {
-        if (viewModel.characterState.value == null && requireContext().isInternetConnectionAvailable(
+        if (viewModel.characterState.value == null && isInternetConnectionAvailable(
                 requireContext()
             )
         )
