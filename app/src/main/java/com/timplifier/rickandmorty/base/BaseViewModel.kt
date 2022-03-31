@@ -13,7 +13,6 @@ open class BaseViewModel : ViewModel() {
 
     protected fun <T> Flow<Resource<T>>.subscribe(
         state: MutableLiveData<T>,
-        requestRoom: suspend (data: T?) -> Unit,
         addition: () -> Unit
     ) {
         viewModelScope.launch {
@@ -26,7 +25,6 @@ open class BaseViewModel : ViewModel() {
                         Log.e("gaypop", it.message.toString())
                     }
                     is Resource.Success -> {
-                        requestRoom(it.data)
                         addition
                         state.postValue(
                             it.data

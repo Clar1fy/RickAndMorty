@@ -26,16 +26,14 @@ class CharacterViewModel @Inject constructor(
     fun fetchCharacters() {
 
         isLoading = true
-        characterRepository.fetchCharacters(page).collect(_characterState) {
+        characterRepository.fetchCharacters(page).subscribe(_characterState) {
             page++
             isLoading = false
         }
 
     }
 
-    fun getCharacters() = characterRepository.getCharacters().collect(
-        _characterLocalState
-    )
+    fun getCharacters() = characterRepository.getCharacters()
 
 
     init {
