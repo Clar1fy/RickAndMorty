@@ -1,16 +1,12 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.timplifier.rickandmorty.base.BaseViewModel
-import com.timplifier.rickandmorty.common.resource.Resource
+import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.data.repositories.CharacterRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,39 +16,31 @@ class CharacterViewModel @Inject constructor(
     var isLoading: Boolean = false
     private var page: Int = 0
 
-    private val _characterState = MutableLiveData<ArrayList<RickAndMortyCharacter>>()
-    var characterState: LiveData<ArrayList<RickAndMortyCharacter>> = _characterState
+    private val _characterState = MutableLiveData<RickAndMortyResponse<RickAndMortyCharacter>>()
+    var characterState: LiveData<RickAndMortyResponse<RickAndMortyCharacter>> = _characterState
+
+    private val _characterLocalState = MutableLiveData<List<RickAndMortyCharacter>>(
+    )
+    var characterLocalState: LiveData<List<RickAndMortyCharacter>> = _characterLocalState
+
     fun fetchCharacters() {
+
         isLoading = true
-        viewModelScope.launch {
-            characterRepository.fetchCharacters(page).collect {
-                when (it) {
-
-                    is Resource.Loading -> {
-                        isLoading = true
-                    }
-                    is Resource.Error -> {
-                        Log.e("An Error in CharacterViewModel occurred", it.message.toString())
-                    }
-                    is Resource.Success -> {
-                        isLoading = false
-
-
-                        _characterState.postValue(it.data?.results)
-
-
-                        page++
-
-                    }
-                }
-            }
+        characterRepository.fetchCharacters(page).collect(_characterState) {
+            page++
+            isLoading = false
         }
 
     }
 
+    fun getCharacters() = characterRepository.getCharacters().collect(
+        _characterLocalState
+    )
+
+
     init {
 
-        _characterState.value.let {
+        if (_characterState.value == null) {
             fetchCharacters()
         }
 

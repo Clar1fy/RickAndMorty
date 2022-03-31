@@ -19,16 +19,20 @@ class CharacterDetailsFragment :
     BaseFragment<FragmentCharacterDetailsBinding, CharacterDetailsViewModel>(
         R.layout.fragment_character_details
     ) {
+
+
     override val binding by viewBinding(FragmentCharacterDetailsBinding::bind)
     override val viewModel: CharacterDetailsViewModel by viewModels()
     private val args: CharacterDetailsFragmentArgs by navArgs()
 
 
     override fun setupViews() {
+        activity?.actionBar?.hide()
     }
 
     override fun setupObserver() {
         subscribeToCharacters()
+
     }
 
     private fun subscribeToCharacters() {

@@ -97,5 +97,8 @@ dependencies {
     // SplashScreen
     implementation(Dependencies.SplashScreen.splashScreen)
 
-
+    // Room with coroutines
+    implementation(Dependencies.Room.runtime)
+    implementation(Dependencies.Room.supportKotlinExtensionsAndCoroutines)
+    kapt(Dependencies.Room.compiler)
 }

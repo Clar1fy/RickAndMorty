@@ -14,8 +14,6 @@ abstract class PaginationScrollListener(
 
         val totalItemCount = layoutManager.itemCount
         val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-
-
         if (!isLoading()) {
             if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
                 sendRequest()

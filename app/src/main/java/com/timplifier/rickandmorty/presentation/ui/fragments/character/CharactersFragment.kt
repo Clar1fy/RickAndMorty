@@ -10,6 +10,7 @@ import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
 import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
+import com.timplifier.rickandmorty.presentation.ui.adapters.CharacterAdapterWithProgressBar
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     override val binding by viewBinding(FragmentCharactersBinding::bind)
     override val viewModel: CharacterViewModel by viewModels()
     private val charactersAdapter = CharactersAdapter(this::onItemClick)
+    private val characterAdapterWithProgressBar = CharacterAdapterWithProgressBar(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
     }
@@ -37,11 +39,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
             }
             )
-
-
         }
     }
-
 
     override fun setupObserver() {
         subscribeToCharacters()
@@ -49,14 +48,11 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
-
+            binding.progressbar.isVisible = viewModel.isLoading
             viewModel.characterState.observe(viewLifecycleOwner) {
+
                 charactersAdapter.submitData(it)
-
-                binding.progressbar.isVisible = viewModel.isLoading
             }
-
-
         }
     }
 
