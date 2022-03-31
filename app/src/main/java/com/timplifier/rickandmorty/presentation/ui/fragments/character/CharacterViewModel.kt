@@ -38,12 +38,14 @@ class CharacterViewModel @Inject constructor(
 
     init {
 
+
         if (_characterState.value == null) {
             fetchCharacters()
         }
 
 
     }
+
 
 }
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.isInternetConnectionAvailable
 import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharacterAdapterWithProgressBar
@@ -46,6 +47,16 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
         subscribeToCharacters()
     }
 
+    override fun setupRequest() {
+        if (viewModel.characterState.value == null && requireContext().isInternetConnectionAvailable(
+                requireContext()
+            )
+        )
+            viewModel.fetchCharacters()
+        else viewModel.getCharacters()
+    }
+
+
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.characterState.observe(viewLifecycleOwner) {
@@ -56,10 +67,9 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     private fun subscribeToLocalCharacters() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.characterLocalState.observe(viewLifecycleOwner) {
-                charactersAdapter.submitData(it)
-            }
+        viewModel.characterLocalState.observe(viewLifecycleOwner) {
+            charactersAdapter.submitData(it)
+
         }
     }
 
