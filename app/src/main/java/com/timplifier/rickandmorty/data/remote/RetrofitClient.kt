@@ -28,14 +28,14 @@ class RetrofitClient {
         .client(okHttpClient)
         .build()
 
-    fun provideCharactersApiService() =
+    fun provideCharactersApiService(): CharactersApiService =
         retrofit.create(CharactersApiService::class.java)
 
 
-    fun provideLocationApiService() =
+    fun provideLocationApiService(): LocationsApiService =
         retrofit.create(LocationsApiService::class.java)
 
-    fun provideEpisodesApiService() =
+    fun provideEpisodesApiService(): EpisodesApiService =
         retrofit.create(EpisodesApiService::class.java)
 
 

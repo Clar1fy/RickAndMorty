@@ -9,7 +9,7 @@ import com.timplifier.rickandmorty.data.local.db.database.AppDatabase
 
 class RoomClient {
 
-    fun provideRoomDatabase(context: Context) =
+    fun provideRoomDatabase(context: Context): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, "database")
             .fallbackToDestructiveMigration().build()
 

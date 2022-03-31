@@ -14,5 +14,5 @@ interface EpisodeDao {
     suspend fun insertEpisodes(vararg episode: RickAndMortyEpisode)
 
     @Query("SELECT * FROM rickandmortyepisode")
-    fun getEpisodes(id: Int): Flow<RickAndMortyEpisode>
+    fun getEpisodes(): Flow<RickAndMortyEpisode>
 }

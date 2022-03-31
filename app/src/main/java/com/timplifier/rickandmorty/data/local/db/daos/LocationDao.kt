@@ -13,5 +13,5 @@ interface LocationDao {
     suspend fun insertLocations(vararg locations: RickAndMortyLocation)
 
     @Query("SELECT * FROM rickandmortylocation")
-    fun getLocations(id: Int): Flow<RickAndMortyLocation>
+    fun getLocations(): Flow<RickAndMortyLocation>
 }

@@ -7,9 +7,10 @@ import com.timplifier.rickandmorty.data.local.db.daos.EpisodeDao
 import com.timplifier.rickandmorty.data.local.db.daos.LocationDao
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.data.remote.dtos.episode.RickAndMortyEpisode
+import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
 
 @Database(
-    entities = [RickAndMortyCharacter::class, RickAndMortyCharacter::class, RickAndMortyEpisode::class],
+    entities = [RickAndMortyCharacter::class, RickAndMortyLocation::class, RickAndMortyEpisode::class],
     version = 1
 )
 
