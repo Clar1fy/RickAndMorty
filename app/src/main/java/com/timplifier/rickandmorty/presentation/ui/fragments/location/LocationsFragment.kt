@@ -41,11 +41,11 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     }
 
     override fun setupObserver() {
-        subscribeToLocations()
-        subscribeToLocalLocations()
+        gatherToLocations()
+        gatherToLocalLocations()
     }
 
-    private fun subscribeToLocalLocations() {
+    private fun gatherToLocalLocations() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.localLocationState.observe(viewLifecycleOwner) {
@@ -54,7 +54,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
         }
     }
 
-    private fun subscribeToLocations() {
+    private fun gatherToLocations() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.locationState.observe(viewLifecycleOwner) {
                 locationsAdapter.submitData(it.results)

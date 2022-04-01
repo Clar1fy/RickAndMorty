@@ -41,8 +41,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     override fun setupObserver() {
-        subscribeToCharacters()
-        subscribeToLocalCharacters()
+        gatherToCharacters()
+        gatherToLocalCharacters()
     }
 
     override fun setupRequest() {
@@ -55,14 +55,14 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
 
-    private fun subscribeToLocalCharacters() {
+    private fun gatherToLocalCharacters() {
         viewModel.characterLocalState.observe(viewLifecycleOwner) {
             charactersAdapter.submitData(it)
 
         }
     }
 
-    private fun subscribeToCharacters() {
+    private fun gatherToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.characterState.observe(viewLifecycleOwner) {
 

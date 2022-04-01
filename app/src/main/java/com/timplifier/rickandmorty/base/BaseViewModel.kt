@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    protected fun <T> Flow<Resource<T>>.subscribe(
+    protected fun <T> Flow<Resource<T>>.gather(
         state: MutableLiveData<T>,
         addition: (() -> Unit)? = null
     ) {

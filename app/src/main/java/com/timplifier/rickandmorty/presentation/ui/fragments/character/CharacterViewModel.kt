@@ -19,32 +19,20 @@ class CharacterViewModel @Inject constructor(
     private val _characterState = MutableLiveData<RickAndMortyResponse<RickAndMortyCharacter>>()
     var characterState: LiveData<RickAndMortyResponse<RickAndMortyCharacter>> = _characterState
 
-    private val _characterLocalState = MutableLiveData<List<RickAndMortyCharacter>>(
-    )
+    private val _characterLocalState = MutableLiveData<List<RickAndMortyCharacter>>()
     var characterLocalState: LiveData<List<RickAndMortyCharacter>> = _characterLocalState
 
     fun fetchCharacters() {
 
         isLoading = true
-        characterRepository.fetchCharacters(page).subscribe(_characterState) {
+        characterRepository.fetchCharacters(page).gather(_characterState) {
             page++
             isLoading = false
         }
 
     }
 
-    fun getCharacters() = characterRepository.getCharacters()
-
-
-    init {
-
-
-        if (_characterState.value == null) {
-            fetchCharacters()
-        }
-
-
-    }
+    fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState)
 
 
 }

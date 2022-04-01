@@ -31,11 +31,11 @@ class CharacterDetailsFragment :
     }
 
     override fun setupObserver() {
-        subscribeToCharacters()
+        gatherToCharacters()
 
     }
 
-    private fun subscribeToCharacters() {
+    private fun gatherToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchSingleCharacter(args.characterId).collect {
                 when (it) {

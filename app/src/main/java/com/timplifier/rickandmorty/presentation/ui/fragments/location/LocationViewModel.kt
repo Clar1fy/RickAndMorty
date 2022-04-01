@@ -24,11 +24,11 @@ class LocationViewModel @Inject constructor(
 
     fun fetchLocations() {
         isLoading = true
-        locationsRepository.fetchLocations(page).subscribe(_locationsState) {
+        locationsRepository.fetchLocations(page).gather(_locationsState) {
             page++
             isLoading = false
         }
     }
 
-    fun getLocations() = locationsRepository.getCharacters().subscribe(_localLocationState)
+    fun getLocations() = locationsRepository.getCharacters().gather(_localLocationState)
 }

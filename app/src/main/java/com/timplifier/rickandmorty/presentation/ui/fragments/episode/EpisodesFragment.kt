@@ -42,11 +42,11 @@ class EpisodesFragment :
 
 
     override fun setupObserver() {
-        subscribeToEpisodes()
-        subscribeToLocalEpisodes()
+        gatherToEpisodes()
+        gatherToLocalEpisodes()
     }
 
-    private fun subscribeToLocalEpisodes() {
+    private fun gatherToLocalEpisodes() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.episodesLocalState.observe(viewLifecycleOwner) {
@@ -55,7 +55,7 @@ class EpisodesFragment :
         }
     }
 
-    private fun subscribeToEpisodes() {
+    private fun gatherToEpisodes() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.episodesState.observe(viewLifecycleOwner) {
                 episodesAdapter.submitData(it.results)

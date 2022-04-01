@@ -26,14 +26,14 @@ class EpisodeViewModel @Inject constructor(
     fun fetchEpisodes() {
 
         isLoading = true
-        episodesRepository.fetchEpisodes(page).subscribe(_episodesState) {
+        episodesRepository.fetchEpisodes(page).gather(_episodesState) {
             page++
             isLoading = false
         }
 
     }
 
-    fun getEpisodes() = episodesRepository.getEpisodes().subscribe(_episodesLocalState)
+    fun getEpisodes() = episodesRepository.getEpisodes().gather(_episodesLocalState)
 
 
 }

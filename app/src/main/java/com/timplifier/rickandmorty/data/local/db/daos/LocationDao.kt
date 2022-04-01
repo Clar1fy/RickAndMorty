@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocation
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface LocationDao {
@@ -13,5 +12,5 @@ interface LocationDao {
     suspend fun insertLocations(vararg locations: RickAndMortyLocation)
 
     @Query("SELECT * FROM locations")
-    fun getLocations(): Flow<RickAndMortyLocation>
+    fun getLocations(): List<RickAndMortyLocation>
 }
