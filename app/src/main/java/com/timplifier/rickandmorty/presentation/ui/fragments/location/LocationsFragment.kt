@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.isInternetConnectionAvailable
 import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
@@ -41,13 +42,30 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
     override fun setupObserver() {
         subscribeToLocations()
+        subscribeToLocalLocations()
+    }
+
+    private fun subscribeToLocalLocations() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.localLocationState.observe(viewLifecycleOwner) {
+                locationsAdapter.submitData(it)
+            }
+        }
     }
 
     private fun subscribeToLocations() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.locationState.observe(viewLifecycleOwner) {
-                locationsAdapter.submitData(it)
+                locationsAdapter.submitData(it.results)
             }
         }
+    }
+
+    override fun setupRequest() {
+
+        if (viewModel.locationState.value == null && isInternetConnectionAvailable(requireContext()))
+            viewModel.fetchLocations()
+        else viewModel.getLocations()
     }
 }

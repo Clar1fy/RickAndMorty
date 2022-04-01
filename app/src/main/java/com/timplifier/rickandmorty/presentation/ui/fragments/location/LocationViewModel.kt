@@ -29,5 +29,6 @@ class LocationViewModel @Inject constructor(
             isLoading = false
         }
     }
-    fun getEpisodes() = locationsRepository.
+
+    fun getLocations() = locationsRepository.getCharacters().subscribe(_localLocationState)
 }
