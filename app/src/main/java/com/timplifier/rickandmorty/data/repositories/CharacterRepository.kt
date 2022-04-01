@@ -3,7 +3,6 @@ package com.timplifier.rickandmorty.data.repositories
 import com.timplifier.rickandmorty.base.BaseRepository
 import com.timplifier.rickandmorty.data.local.db.daos.CharacterDao
 import com.timplifier.rickandmorty.data.remote.apiservices.CharactersApiService
-import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import javax.inject.Inject
 
 class CharacterRepository @Inject constructor(
@@ -24,9 +23,6 @@ class CharacterRepository @Inject constructor(
     fun fetchSingleCharacter(id: Int) = sendRequest {
         charactersApiService.fetchSingleCharacter(id)
     }
-
-    suspend fun insertCharacters(characters: List<RickAndMortyCharacter>) =
-        characterDao.insertCharacters(* characters.toTypedArray())
 
 
     fun getCharacters() = sendRequest {

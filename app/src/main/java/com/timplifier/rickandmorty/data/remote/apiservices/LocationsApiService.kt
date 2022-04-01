@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface LocationsApiService {
 
     @GET("api/location")
-    suspend fun fetchEpisode(@Query("page") page: Int): RickAndMortyResponse<RickAndMortyLocation>
+    suspend fun fetchLocations(@Query("page") page: Int): RickAndMortyResponse<RickAndMortyLocation>
 }

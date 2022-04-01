@@ -13,7 +13,7 @@ open class BaseViewModel : ViewModel() {
 
     protected fun <T> Flow<Resource<T>>.subscribe(
         state: MutableLiveData<T>,
-        addition: () -> Unit
+        addition: (() -> Unit)? = null
     ) {
         viewModelScope.launch {
             collect {
@@ -25,7 +25,10 @@ open class BaseViewModel : ViewModel() {
                         Log.e("gaypop", it.message.toString())
                     }
                     is Resource.Success -> {
-                        addition
+                        addition?.let {
+                            addition(
+                            )
+                        }
                         state.postValue(
                             it.data
                         )

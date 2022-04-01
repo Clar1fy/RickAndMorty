@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.isInternetConnectionAvailable
 import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentEpisodesBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.EpisodesAdapter
@@ -39,22 +40,36 @@ class EpisodesFragment :
 
     }
 
+
     override fun setupObserver() {
         subscribeToEpisodes()
+        subscribeToLocalEpisodes()
+    }
+
+    private fun subscribeToLocalEpisodes() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.episodesLocalState.observe(viewLifecycleOwner) {
+                episodesAdapter.submitData(it)
+            }
+        }
     }
 
     private fun subscribeToEpisodes() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.episodesState.observe(viewLifecycleOwner) {
-                if (viewModel.isLoading) {
+                episodesAdapter.submitData(it.results)
 
-                    binding.progressBar.isVisible = true
-                } else {
-                    episodesAdapter.submitData(it)
-                    binding.progressBar.isVisible = false
-                }
             }
         }
 
+    }
+
+    override fun setupRequest() {
+
+        if (viewModel.episodesState.value == null && isInternetConnectionAvailable(requireContext()))
+            viewModel.fetchEpisodes()
+        else
+            viewModel.getEpisodes()
     }
 }

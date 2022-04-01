@@ -20,11 +20,10 @@ class EpisodeViewModel @Inject constructor(
     private val _episodesState = MutableLiveData<RickAndMortyResponse<RickAndMortyEpisode>>()
     var episodesState: LiveData<RickAndMortyResponse<RickAndMortyEpisode>> = _episodesState
 
-    private val _episodesLocalState = MutableLiveData<List<RickAndMortyEpisode>>(
-    )
+    private val _episodesLocalState = MutableLiveData<List<RickAndMortyEpisode>>()
     var episodesLocalState: LiveData<List<RickAndMortyEpisode>> = _episodesLocalState
 
-    fun fetchCharacters() {
+    fun fetchEpisodes() {
 
         isLoading = true
         episodesRepository.fetchEpisodes(page).subscribe(_episodesState) {
@@ -34,17 +33,8 @@ class EpisodeViewModel @Inject constructor(
 
     }
 
-    fun getCharacters() = episodesRepository.()
+    fun getEpisodes() = episodesRepository.getEpisodes().subscribe(_episodesLocalState)
 
-
-    init {
-
-
-        if (_episodesState.value == null) {
-            fetchCharacters()
-        }
-
-
-    }
 
 }
+

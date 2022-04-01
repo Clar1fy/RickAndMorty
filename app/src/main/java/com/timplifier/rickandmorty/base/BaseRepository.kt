@@ -12,7 +12,7 @@ open class BaseRepository {
     ) = flow {
         emit(Resource.Loading())
         try {
-            request().let {
+            request()?.let {
                 saveToDatabase(it)
 
                 emit(Resource.Success(it))

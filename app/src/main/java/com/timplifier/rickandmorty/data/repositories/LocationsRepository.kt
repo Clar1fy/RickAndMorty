@@ -8,10 +8,8 @@ class LocationsRepository @Inject constructor(
     private val locationsApiService: LocationsApiService
 ) : BaseRepository() {
 
-    fun fetchLocations(page: Int) = sendRequest {
-        locationsApiService.fetchEpisode(page)
 
-
-    }
-
+    fun fetchLocations(page: Int) = sendRequest({
+        locationsApiService.fetchEpisode()
+    })
 }

@@ -55,19 +55,19 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
 
+    private fun subscribeToLocalCharacters() {
+        viewModel.characterLocalState.observe(viewLifecycleOwner) {
+            charactersAdapter.submitData(it)
+
+        }
+    }
+
     private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.characterState.observe(viewLifecycleOwner) {
 
                 charactersAdapter.submitData(it.results)
             }
-        }
-    }
-
-    private fun subscribeToLocalCharacters() {
-        viewModel.characterLocalState.observe(viewLifecycleOwner) {
-            charactersAdapter.submitData(it)
-
         }
     }
 
