@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.timplifier.rickandmorty.base.BaseDiffModel
 
-@Entity
+@Entity(tableName = "locations")
 data class RickAndMortyLocation(
 
     @ColumnInfo(name = "location's id")
