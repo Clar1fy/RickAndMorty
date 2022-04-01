@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.timplifier.rickandmorty.base.BaseDiffModel
+import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 
 @Entity(tableName = "episodes")
 data class RickAndMortyEpisode(
@@ -19,5 +20,7 @@ data class RickAndMortyEpisode(
     val air_date: String,
     @SerializedName("episode")
     @ColumnInfo(name = "episode's code")
-    val episode: String
+    val episode: String,
+    @SerializedName("characters")
+    val characters: List<RickAndMortyCharacter>
 ) : BaseDiffModel

@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.timplifier.rickandmorty.base.BaseDiffModel
+import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 
 @Entity(tableName = "locations")
 data class RickAndMortyLocation(
@@ -21,5 +22,8 @@ data class RickAndMortyLocation(
     val type: String,
     @SerializedName("dimension")
     @ColumnInfo(name = "dimension where the location happened to be located")
-    val dimension: String
+    val dimension: String,
+    @SerializedName("residents")
+    val residents: List<RickAndMortyCharacter>
+
 ) : BaseDiffModel

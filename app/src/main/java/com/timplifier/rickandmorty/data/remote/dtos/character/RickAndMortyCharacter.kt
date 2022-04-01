@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.timplifier.rickandmorty.base.BaseDiffModel
+import com.timplifier.rickandmorty.data.remote.dtos.episode.RickAndMortyEpisode
 
 @Entity(tableName = "characters")
 
@@ -38,4 +39,9 @@ data class RickAndMortyCharacter(
     @ColumnInfo(name = "character's image")
     @SerializedName("image")
     val image: String,
+    @SerializedName("episode")
+    val episodes: List<RickAndMortyEpisode>,
+    @SerializedName("url")
+    val url: String
+
 ) : BaseDiffModel

@@ -1,6 +1,5 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.episode
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
