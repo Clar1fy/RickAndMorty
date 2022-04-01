@@ -13,13 +13,16 @@ class CharacterConverter {
         location.name
 
 
+    @TypeConverter
     fun fromOrigin(origin: Origin): String =
 
         origin.name
 
+    @TypeConverter
     fun fromLocations(locations: List<RickAndMortyLocation>): String =
         locations.joinToString(separator = ",")
 
+    @TypeConverter
     fun fromEpisodes(episodes: List<RickAndMortyEpisode>): String =
         episodes.joinToString(separator = ",")
 
