@@ -1,6 +1,7 @@
 package com.timplifier.rickandmorty.data.remote.dtos.character
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -13,6 +14,7 @@ data class RickAndMortyCharacter(
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     override val id: Int,
+
     @SerializedName("name")
     val name: String,
     @SerializedName("status")
@@ -24,8 +26,10 @@ data class RickAndMortyCharacter(
     @SerializedName("gender")
     val gender: String,
     @SerializedName("origin")
+    @Embedded(prefix = "origins")
     val origin: Origin,
     @SerializedName("location")
+    @Embedded(prefix = "locations")
     val location: Location,
     @SerializedName("image")
     val image: String,

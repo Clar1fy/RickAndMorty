@@ -2,7 +2,6 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
 import android.util.Log
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
@@ -13,7 +12,6 @@ import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewModel>(
@@ -35,7 +33,10 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
             addOnScrollListener(object :
                 PaginationScrollListener(
                     linearLayoutManager,
-                    { if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchLocations() }) {
+                    {
+                        if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchLocations()
+                        else null
+                    }) {
 
                 override fun isLoading() = viewModel.isLoading
             })
@@ -44,24 +45,22 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     }
 
     override fun setupObserver() {
-        gatherToLocations()
-        gatherToLocalLocations()
+        subscribeToLocations()
+        subscribeToLocalLocations()
     }
 
-    private fun gatherToLocalLocations() {
+    private fun subscribeToLocalLocations() {
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.localLocationState.observe(viewLifecycleOwner) {
-                locationsAdapter.submitData(it)
-            }
+        viewModel.localLocationState.observe(viewLifecycleOwner) {
+            locationsAdapter.submitData(it)
         }
+
     }
 
-    private fun gatherToLocations() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.locationState.observe(viewLifecycleOwner) {
-                locationsAdapter.submitData(it.results)
-            }
+    private fun subscribeToLocations() {
+        viewModel.locationState.observe(viewLifecycleOwner) {
+            locationsAdapter.submitData(it.results)
+
         }
     }
 

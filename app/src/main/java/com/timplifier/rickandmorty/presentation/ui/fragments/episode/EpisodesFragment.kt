@@ -1,7 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.episode
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
@@ -12,7 +11,6 @@ import com.timplifier.rickandmorty.databinding.FragmentEpisodesBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.EpisodesAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EpisodesFragment :
@@ -34,7 +32,10 @@ class EpisodesFragment :
             addOnScrollListener(object :
                 PaginationScrollListener(
                     linearLayoutManager,
-                    { if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchEpisodes() }) {
+                    {
+                        if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchEpisodes()
+                        else null
+                    }) {
 
                 override fun isLoading() = viewModel.isLoading
             }
@@ -51,20 +52,18 @@ class EpisodesFragment :
 
     private fun subscribeToLocalEpisodes() {
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.episodesLocalState.observe(viewLifecycleOwner) {
-                episodesAdapter.submitData(it)
-            }
+        viewModel.episodesLocalState.observe(viewLifecycleOwner) {
+            episodesAdapter.submitData(it)
         }
+
     }
 
     private fun subscribeToEpisodes() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.episodesState.observe(viewLifecycleOwner) {
-                episodesAdapter.submitData(it.results)
+        viewModel.episodesState.observe(viewLifecycleOwner) {
+            episodesAdapter.submitData(it.results)
 
-            }
         }
+
 
     }
 
