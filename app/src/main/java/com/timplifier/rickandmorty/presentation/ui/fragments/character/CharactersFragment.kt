@@ -1,6 +1,5 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,15 +11,14 @@ import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>(
     R.layout.fragment_characters
 ) {
     override val binding by viewBinding(FragmentCharactersBinding::bind)
-    override val viewModel: CharacterViewModel by viewModels()
+    override val viewModel: CharacterViewModel by viewModel()
     private val charactersAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()

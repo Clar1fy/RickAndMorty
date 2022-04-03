@@ -1,7 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,14 +11,13 @@ import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewModel>(
     R.layout.fragment_locations
 ) {
-    override val viewModel: LocationViewModel by viewModels()
+    override val viewModel: LocationViewModel by viewModel()
     override val binding by viewBinding(FragmentLocationsBinding::bind)
     private val locationsAdapter = LocationsAdapter()
 
