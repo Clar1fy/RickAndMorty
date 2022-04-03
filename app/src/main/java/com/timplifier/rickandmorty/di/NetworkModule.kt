@@ -4,8 +4,9 @@ import com.timplifier.rickandmorty.data.remote.RetrofitClient
 import org.koin.dsl.module
 
 
-private val networkModule = module {
+val networkModule = module {
 
-    single { RetrofitClient() }
-
+    single { RetrofitClient().provideCharactersApiService() }
+    single { RetrofitClient().provideLocationApiService() }
+    single { RetrofitClient().provideEpisodesApiService() }
 }
