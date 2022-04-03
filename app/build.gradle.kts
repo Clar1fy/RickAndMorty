@@ -11,8 +11,6 @@ plugins {
     // Navigation SafeArgs
     id(Dependencies.Navigation.safeArgsPlugin)
 
-    // Hilt
-    id(Dependencies.Hilt.plugin)
 
 }
 
@@ -83,9 +81,8 @@ dependencies {
     implementation(Dependencies.OkHttp.okHttp)
     implementation(Dependencies.OkHttp.bom)
 
-    // Hilt
-    implementation(Dependencies.Hilt.android)
-    kapt(Dependencies.Hilt.compiler)
+    // Koin
+    implementation(Dependencies.Koin.koinAndroid)
 
     // Legacy Support
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
