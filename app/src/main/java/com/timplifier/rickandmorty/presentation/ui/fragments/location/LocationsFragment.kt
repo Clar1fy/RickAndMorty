@@ -33,7 +33,9 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             addOnScrollListener(object :
-                PaginationScrollListener(linearLayoutManager, { viewModel.fetchLocations() }) {
+                PaginationScrollListener(
+                    linearLayoutManager,
+                    { if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchLocations() }) {
 
                 override fun isLoading() = viewModel.isLoading
             })

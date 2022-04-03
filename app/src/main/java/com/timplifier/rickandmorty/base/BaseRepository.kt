@@ -4,7 +4,7 @@ import com.timplifier.rickandmorty.common.resource.Resource
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
 
-open class BaseRepository {
+abstract class BaseRepository {
 
     protected fun <T> sendRequest(
         request: suspend () -> T,

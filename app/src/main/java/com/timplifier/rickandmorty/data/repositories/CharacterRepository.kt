@@ -30,4 +30,9 @@ class CharacterRepository @Inject constructor(
         characterDao.getCharacters()
     }
 
+    fun getSingleCharacter(id: Int) = sendRequest {
+        characterDao.getSingleCharacter(id)
+    }
+
+
 }

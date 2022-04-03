@@ -33,7 +33,8 @@ class EpisodeViewModel @Inject constructor(
 
     }
 
-    fun getEpisodes() = episodesRepository.getEpisodes().gather(_episodesLocalState)
+
+    fun getEpisodes() = episodesRepository.getEpisodes().gather(_episodesLocalState, null)
 
 
 }

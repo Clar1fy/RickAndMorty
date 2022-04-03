@@ -32,7 +32,13 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             addOnScrollListener(object :
-                PaginationScrollListener(linearLayoutManager, { viewModel.fetchCharacters() }) {
+                PaginationScrollListener(
+                    linearLayoutManager,
+                    {
+                        if (requireContext().isInternetConnectionAvailable(requireContext()))
+                            viewModel.fetchCharacters() else viewModel.getCharacters()
+
+                    }) {
                 override fun isLoading() = viewModel.isLoading
 
             }
@@ -41,8 +47,8 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
     override fun setupObserver() {
-        gatherToCharacters()
-        gatherToLocalCharacters()
+        subscribeToCharacters()
+        subscribeToLocalCharacters()
     }
 
     override fun setupRequest() {
@@ -56,14 +62,17 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     }
 
 
-    private fun gatherToLocalCharacters() {
-        viewModel.characterLocalState.observe(viewLifecycleOwner) {
-            charactersAdapter.submitData(it)
+    private fun subscribeToLocalCharacters() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.characterLocalState.observe(viewLifecycleOwner) {
+                charactersAdapter.submitData(it)
 
+            }
         }
+
     }
 
-    private fun gatherToCharacters() {
+    private fun subscribeToCharacters() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.characterState.observe(viewLifecycleOwner) {
 

@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
 import com.timplifier.rickandmorty.base.BaseFragment
+import com.timplifier.rickandmorty.common.extensions.isInternetConnectionAvailable
 import com.timplifier.rickandmorty.common.extensions.setCircularImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
@@ -31,30 +32,32 @@ class CharacterDetailsFragment :
     }
 
     override fun setupObserver() {
-        gatherToCharacters()
+        subscribeToSingleCharacter()
 
     }
 
-    private fun gatherToCharacters() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.fetchSingleCharacter(args.characterId).collect {
-                when (it) {
-                    is Resource.Loading -> {
-                        Log.e("anime", "Loading")
-                    }
-                    is Resource.Error -> {
-                        Log.e("anime", it.message.toString())
-                    }
-                    is Resource.Success -> {
-                        binding.apply {
-                            it.data?.image?.let { it1 -> imCharacter.setCircularImage(it1) }
-                            tvCharacter.text = it.data?.name
-                            tvGender.text = it.data?.gender
+
+    private fun subscribeToSingleCharacter() {
+        if (requireContext().isInternetConnectionAvailable(requireContext()))
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.fetchSingleCharacter(args.characterId).collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            Log.e("anime", "Loading")
+                        }
+                        is Resource.Error -> {
+                            Log.e("anime", it.message.toString())
+                        }
+                        is Resource.Success -> {
+                            binding.apply {
+                                it.data?.image?.let { it1 -> imCharacter.setCircularImage(it1) }
+                                tvCharacter.text = it.data?.name
+                                tvGender.text = it.data?.gender
+                            }
                         }
                     }
                 }
             }
-        }
     }
 
 

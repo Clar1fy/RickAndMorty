@@ -12,4 +12,8 @@ class CharacterDetailsViewModel @Inject constructor(
 
     fun fetchSingleCharacter(id: Int) =
         characterRepository.fetchSingleCharacter(id)
+
+    fun getSingleCharacter(id: Int) =
+        characterRepository.getSingleCharacter(id)
+
 }

@@ -32,7 +32,10 @@ class EpisodesFragment :
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             addOnScrollListener(object :
-                PaginationScrollListener(linearLayoutManager, { viewModel.fetchEpisodes() }) {
+                PaginationScrollListener(
+                    linearLayoutManager,
+                    { if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchEpisodes() }) {
+
                 override fun isLoading() = viewModel.isLoading
             }
             )
@@ -42,11 +45,11 @@ class EpisodesFragment :
 
 
     override fun setupObserver() {
-        gatherToEpisodes()
-        gatherToLocalEpisodes()
+        subscribeToEpisodes()
+        subscribeToLocalEpisodes()
     }
 
-    private fun gatherToLocalEpisodes() {
+    private fun subscribeToLocalEpisodes() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.episodesLocalState.observe(viewLifecycleOwner) {
@@ -55,7 +58,7 @@ class EpisodesFragment :
         }
     }
 
-    private fun gatherToEpisodes() {
+    private fun subscribeToEpisodes() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.episodesState.observe(viewLifecycleOwner) {
                 episodesAdapter.submitData(it.results)
@@ -71,6 +74,7 @@ class EpisodesFragment :
                 requireContext()
             )
         )
+
             viewModel.fetchEpisodes()
         else
             viewModel.getEpisodes()

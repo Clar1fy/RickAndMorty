@@ -13,8 +13,8 @@ import javax.inject.Inject
 class CharacterViewModel @Inject constructor(
     private val characterRepository: CharacterRepository
 ) : BaseViewModel() {
-    var isLoading: Boolean = false
     private var page: Int = 0
+    var isLoading: Boolean = false
 
     private val _characterState = MutableLiveData<RickAndMortyResponse<RickAndMortyCharacter>>()
     var characterState: LiveData<RickAndMortyResponse<RickAndMortyCharacter>> = _characterState
@@ -32,7 +32,7 @@ class CharacterViewModel @Inject constructor(
 
     }
 
-    fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState)
+    fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState, null)
 
 
 }

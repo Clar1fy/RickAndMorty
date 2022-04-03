@@ -30,5 +30,5 @@ class LocationViewModel @Inject constructor(
         }
     }
 
-    fun getLocations() = locationsRepository.getCharacters().gather(_localLocationState)
+    fun getLocations() = locationsRepository.getCharacters().gather(_localLocationState, null)
 }

@@ -9,11 +9,10 @@ import com.timplifier.rickandmorty.base.BaseDiffModel
 @Entity
 data class RickAndMortyLocation(
 
-    @ColumnInfo(name = "location's id")
+
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     override val id: Int,
-    @ColumnInfo(name = "location's name")
     @SerializedName("name")
     val name: String,
     @SerializedName("type")
