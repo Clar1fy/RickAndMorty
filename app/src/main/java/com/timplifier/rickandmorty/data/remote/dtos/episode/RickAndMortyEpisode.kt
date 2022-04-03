@@ -8,6 +8,7 @@ import com.timplifier.rickandmorty.base.BaseDiffModel
 
 @Entity
 data class RickAndMortyEpisode(
+    @ColumnInfo(name = "episode's id")
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     override val id: Int,

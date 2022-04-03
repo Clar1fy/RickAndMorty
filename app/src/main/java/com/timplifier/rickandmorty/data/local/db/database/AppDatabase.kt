@@ -13,7 +13,7 @@ import com.timplifier.rickandmorty.data.remote.dtos.location.RickAndMortyLocatio
 
 @Database(
     entities = [RickAndMortyCharacter::class, RickAndMortyLocation::class, RickAndMortyEpisode::class],
-    version = 2
+    version = 2, exportSchema = false
 )
 @TypeConverters(Converters::class)
 

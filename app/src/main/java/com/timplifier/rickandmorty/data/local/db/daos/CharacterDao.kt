@@ -15,8 +15,5 @@ interface CharacterDao {
     @Query("SELECT * FROM rickandmortycharacter")
     fun getCharacters(): List<RickAndMortyCharacter>
 
-    @Query("SELECT * FROM rickandmortycharacter")
-    fun getSingleCharacter(id: Int): RickAndMortyCharacter
-
 
 }
