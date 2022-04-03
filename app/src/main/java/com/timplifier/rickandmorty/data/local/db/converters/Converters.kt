@@ -2,20 +2,11 @@ package com.timplifier.rickandmorty.data.local.db.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.timplifier.rickandmorty.common.extensions.fromJsonList
 import com.timplifier.rickandmorty.data.remote.dtos.character.Location
 import com.timplifier.rickandmorty.data.remote.dtos.character.Origin
 
 class Converters {
-    private inline fun <reified T> typeToken() = object : TypeToken<T>() {}.type
-
-    private inline fun <reified T> fromJson(value: String?): T {
-        return Gson().fromJson(value, typeToken<T>())
-    }
-
-    private inline fun <reified T> toJson(generic: T): String? {
-        return Gson().toJson(generic, typeToken<T>())
-    }
 
 
     @TypeConverter
@@ -31,10 +22,11 @@ class Converters {
     fun jsonToOrigin(value: String): Origin = Gson().fromJson(value, Origin::class.java)
 
     @TypeConverter
-    fun listToJson(value: String?) = fromJson<List<String>>(value)
+    fun listToJson(value: String?) = Gson().fromJsonList<List<String>>(value)
+
 
     @TypeConverter
-    fun jsonToList(episodes: List<String>) = Gson().toJson(episodes)
+    fun jsonToList(episodes: List<String>): String? = Gson().toJson(episodes)
 
 
 }
