@@ -5,8 +5,9 @@ import org.koin.dsl.module
 
 
 val networkModule = module {
+    val retrofitClient = RetrofitClient()
 
-    single { RetrofitClient().provideCharactersApiService() }
-    single { RetrofitClient().provideLocationApiService() }
-    single { RetrofitClient().provideEpisodesApiService() }
+    single { retrofitClient.provideCharactersApiService() }
+    single { retrofitClient.provideLocationApiService() }
+    single { retrofitClient.provideEpisodesApiService() }
 }

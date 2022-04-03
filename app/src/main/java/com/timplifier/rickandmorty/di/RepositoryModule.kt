@@ -7,6 +7,7 @@ import org.koin.dsl.module
 
 
 val repositoryModule = module {
+
     factory { CharacterRepository(get(), get()) }
     factory { LocationsRepository(get(), get()) }
     factory { EpisodesRepository(get(), get()) }
