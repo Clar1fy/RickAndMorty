@@ -12,7 +12,7 @@ interface CharacterDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCharacters(vararg characters: RickAndMortyCharacter)
 
-    @Query("SELECT * FROM characters")
+    @Query("SELECT * FROM rickandmortycharacter")
     fun getCharacters(): List<RickAndMortyCharacter>
 
 

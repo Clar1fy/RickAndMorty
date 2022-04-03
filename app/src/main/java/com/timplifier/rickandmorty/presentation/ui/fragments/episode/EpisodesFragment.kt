@@ -67,7 +67,10 @@ class EpisodesFragment :
 
     override fun setupRequest() {
 
-        if (viewModel.episodesState.value == null && isInternetConnectionAvailable(requireContext()))
+        if (viewModel.episodesState.value == null && requireContext().isInternetConnectionAvailable(
+               requireContext()
+            )
+        )
             viewModel.fetchEpisodes()
         else
             viewModel.getEpisodes()

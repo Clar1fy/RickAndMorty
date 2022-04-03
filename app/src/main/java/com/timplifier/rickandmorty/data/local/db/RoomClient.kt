@@ -12,7 +12,9 @@ class RoomClient {
 
     fun provideRoomDatabase(context: Context): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, RICK_AND_MORTY_DATABASE)
+
             .fallbackToDestructiveMigration().build()
+
 
     fun provideCharacterDao(appDatabase: AppDatabase): CharacterDao =
         appDatabase.characterDao()

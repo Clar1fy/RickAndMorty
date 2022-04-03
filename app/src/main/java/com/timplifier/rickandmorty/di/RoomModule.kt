@@ -16,22 +16,25 @@ object RoomModule {
 
 
     @Singleton
+    private val roomClient = RoomClient()
+
+    @Singleton
     @Provides
     fun provideRoomDatabase(@ApplicationContext context: Context) =
-        RoomClient().provideRoomDatabase(context)
+        roomClient.provideRoomDatabase(context)
 
     @Singleton
     @Provides
     fun provideCharacterDao(appDatabase: AppDatabase) =
-        RoomClient().provideCharacterDao(appDatabase)
+        roomClient.provideCharacterDao(appDatabase)
 
     @Singleton
     @Provides
-    fun provideLocationDao(appDatabase: AppDatabase) = RoomClient().provideLocationDao(appDatabase)
+    fun provideLocationDao(appDatabase: AppDatabase) = roomClient.provideLocationDao(appDatabase)
 
     @Singleton
     @Provides
-    fun provideEpisodeDao(appDatabase: AppDatabase) = RoomClient().provideEpisodeDao(appDatabase)
+    fun provideEpisodeDao(appDatabase: AppDatabase) = roomClient.provideEpisodeDao(appDatabase)
 
 
 }

@@ -1,5 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,8 +65,14 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
 
     override fun setupRequest() {
 
-        if (viewModel.locationState.value == null && isInternetConnectionAvailable(requireContext()))
+        if (viewModel.locationState.value == null && requireContext().isInternetConnectionAvailable(
+               requireContext()
+            )
+        ) {
+
+            Log.e("GayPop", "Internet is available ")
             viewModel.fetchLocations()
-        else viewModel.getLocations()
+
+        } else viewModel.getLocations()
     }
 }
