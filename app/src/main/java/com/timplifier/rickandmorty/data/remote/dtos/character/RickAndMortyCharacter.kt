@@ -1,11 +1,9 @@
 package com.timplifier.rickandmorty.data.remote.dtos.character
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import com.timplifier.rickandmorty.base.BaseDiffModel
+import com.timplifier.rickandmorty.data.local.db.converters.Converters
 
 
 @Entity
@@ -28,18 +26,16 @@ data class RickAndMortyCharacter(
     @SerializedName("gender")
     val gender: String,
     @SerializedName("origin")
-    @Embedded
     val origin: Origin,
     @SerializedName("location")
-    @Embedded
     val location: Location,
     @ColumnInfo(name = "character's image")
     @SerializedName("image")
     val image: String,
     @SerializedName("episode")
-    val episode: List<String>,
+    val episodes: List<String>,
     @SerializedName("url")
     val url: String,
     @SerializedName("created")
-    val created : String
+    val created: String
 ) : BaseDiffModel

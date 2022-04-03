@@ -66,7 +66,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     override fun setupRequest() {
 
         if (viewModel.locationState.value == null && requireContext().isInternetConnectionAvailable(
-               requireContext()
+                requireContext()
             )
         ) {
 

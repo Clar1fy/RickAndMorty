@@ -13,6 +13,10 @@ class Converters {
         return Gson().fromJson(value, typeToken<T>())
     }
 
+    private inline fun <reified T> toJson(generic: T): String? {
+        return Gson().toJson(generic, typeToken<T>())
+    }
+
 
     @TypeConverter
     fun locationToJson(value: Location?): String? = Gson().toJson(value)
@@ -27,10 +31,10 @@ class Converters {
     fun jsonToOrigin(value: String): Origin = Gson().fromJson(value, Origin::class.java)
 
     @TypeConverter
-    fun episodesToJson(value: String?) = fromJson<List<String>>(value)
+    fun listToJson(value: String?) = fromJson<List<String>>(value)
 
     @TypeConverter
-    fun residentsToJson(value: String?) = fromJson<List<String>>(value)
+    fun jsonToList(episodes: List<String>) = Gson().toJson(episodes)
 
 
 }

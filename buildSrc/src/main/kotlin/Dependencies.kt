@@ -88,7 +88,7 @@ object Dependencies {
 
         // | optional - Kotlin Extensions and Coroutines support for Room
         const val supportKotlinExtensionsAndCoroutines = "androidx.room:room-ktx:$version"
-        const val supportListsConversion ="implementation 'com.google.code.gson:gson:2.8.6'"
+        const val supportListsConversion = "implementation 'com.google.code.gson:gson:2.8.6'"
     }
 
     object Paging {
