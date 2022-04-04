@@ -5,10 +5,10 @@ import org.koin.dsl.module
 
 val roomModule = module {
 
-    val roomClient = RoomClient()
 
-    single { roomClient.provideRoomDatabase(get()) }
-    single { roomClient.provideCharacterDao(get()) }
-    single { roomClient.provideLocationDao(get()) }
-    single { roomClient.provideEpisodeDao(get()) }
+    single { RoomClient() }
+    single { get<RoomClient>().provideRoomDatabase(get()) }
+    single { get<RoomClient>().provideCharacterDao(get()) }
+    single { get<RoomClient>().provideLocationDao(get()) }
+    single { get<RoomClient>().provideEpisodeDao(get()) }
 }
