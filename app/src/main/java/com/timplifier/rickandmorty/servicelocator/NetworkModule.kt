@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.di
+package com.timplifier.rickandmorty.servicelocator
 
 import com.timplifier.rickandmorty.data.remote.RetrofitClient
 import org.koin.dsl.module

@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.di
+package com.timplifier.rickandmorty.servicelocator
 
 import com.timplifier.rickandmorty.data.repositories.CharacterRepository
 import com.timplifier.rickandmorty.data.repositories.EpisodesRepository

@@ -1,10 +1,10 @@
 package com.timplifier.rickandmorty
 
 import android.app.Application
-import com.timplifier.rickandmorty.di.networkModule
-import com.timplifier.rickandmorty.di.repositoryModule
-import com.timplifier.rickandmorty.di.roomModule
-import com.timplifier.rickandmorty.di.viewModelModule
+import com.timplifier.rickandmorty.servicelocator.networkModule
+import com.timplifier.rickandmorty.servicelocator.repositoryModule
+import com.timplifier.rickandmorty.servicelocator.roomModule
+import com.timplifier.rickandmorty.servicelocator.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

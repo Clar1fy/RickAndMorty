@@ -1,4 +1,4 @@
-package com.timplifier.rickandmorty.di
+package com.timplifier.rickandmorty.servicelocator
 
 import com.timplifier.rickandmorty.presentation.ui.fragments.character.CharacterViewModel
 import com.timplifier.rickandmorty.presentation.ui.fragments.character.details.CharacterDetailsViewModel
