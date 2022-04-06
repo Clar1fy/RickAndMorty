@@ -1,7 +1,7 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.location
 
 import android.util.Log
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.timplifier.rickandmorty.R
@@ -11,13 +11,13 @@ import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentLocationsBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.LocationsAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewModel>(
     R.layout.fragment_locations
 ) {
-    override val viewModel: LocationViewModel by viewModels()
+    override val viewModel: LocationViewModel by viewModel()
     override val binding by viewBinding(FragmentLocationsBinding::bind)
     private val locationsAdapter = LocationsAdapter()
 
@@ -33,10 +33,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
             addOnScrollListener(object :
                 PaginationScrollListener(
                     linearLayoutManager,
-                    {
-                        if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchLocations()
-                        else null
-                    }) {
+                    { if (requireContext().isInternetConnectionAvailable(requireContext())) viewModel.fetchLocations() }) {
 
                 override fun isLoading() = viewModel.isLoading
             })
@@ -45,22 +42,24 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding, LocationViewMod
     }
 
     override fun setupObserver() {
-        subscribeToLocations()
-        subscribeToLocalLocations()
+        gatherToLocations()
+        gatherToLocalLocations()
     }
 
-    private fun subscribeToLocalLocations() {
+    private fun gatherToLocalLocations() {
 
-        viewModel.localLocationState.observe(viewLifecycleOwner) {
-            locationsAdapter.submitData(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.localLocationState.observe(viewLifecycleOwner) {
+                locationsAdapter.submitData(it)
+            }
         }
-
     }
 
-    private fun subscribeToLocations() {
-        viewModel.locationState.observe(viewLifecycleOwner) {
-            locationsAdapter.submitData(it.results)
-
+    private fun gatherToLocations() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.locationState.observe(viewLifecycleOwner) {
+                locationsAdapter.submitData(it.results)
+            }
         }
     }
 

@@ -11,6 +11,7 @@ class RoomClient {
 
     fun provideRoomDatabase(context: Context) =
         Room.databaseBuilder(context, AppDatabase::class.java, "database")
+
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration().build()
 

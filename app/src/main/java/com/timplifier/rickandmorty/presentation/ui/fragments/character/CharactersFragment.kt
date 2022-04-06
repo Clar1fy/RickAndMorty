@@ -1,6 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -11,14 +11,14 @@ import com.timplifier.rickandmorty.common.extensions.submitData
 import com.timplifier.rickandmorty.databinding.FragmentCharactersBinding
 import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
-import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>(
     R.layout.fragment_characters
 ) {
     override val binding by viewBinding(FragmentCharactersBinding::bind)
-    override val viewModel: CharacterViewModel by viewModels()
+    override val viewModel: CharacterViewModel by viewModel()
     private val charactersAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
@@ -34,7 +34,7 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
                     linearLayoutManager,
                     {
                         if (requireContext().isInternetConnectionAvailable(requireContext()))
-                            viewModel.fetchCharacters() else null
+                            viewModel.fetchCharacters() else viewModel.getCharacters()
 
                     }) {
                 override fun isLoading() = viewModel.isLoading
@@ -61,20 +61,22 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
 
 
     private fun subscribeToLocalCharacters() {
-        viewModel.characterLocalState.observe(viewLifecycleOwner) {
-            charactersAdapter.submitData(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.characterLocalState.observe(viewLifecycleOwner) {
+                charactersAdapter.submitData(it)
 
+            }
         }
-
 
     }
 
     private fun subscribeToCharacters() {
-        viewModel.characterState.observe(viewLifecycleOwner) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.characterState.observe(viewLifecycleOwner) {
 
-            charactersAdapter.submitData(it.results)
+                charactersAdapter.submitData(it.results)
+            }
         }
-
     }
 
     private fun onItemClick(id: Int) {

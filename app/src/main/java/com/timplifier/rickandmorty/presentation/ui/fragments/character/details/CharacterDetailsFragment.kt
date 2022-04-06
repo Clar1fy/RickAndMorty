@@ -1,7 +1,6 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character.details
 
 import android.util.Log
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -11,11 +10,10 @@ import com.timplifier.rickandmorty.common.extensions.isInternetConnectionAvailab
 import com.timplifier.rickandmorty.common.extensions.setCircularImage
 import com.timplifier.rickandmorty.common.resource.Resource
 import com.timplifier.rickandmorty.databinding.FragmentCharacterDetailsBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class CharacterDetailsFragment :
     BaseFragment<FragmentCharacterDetailsBinding, CharacterDetailsViewModel>(
         R.layout.fragment_character_details
@@ -23,7 +21,7 @@ class CharacterDetailsFragment :
 
 
     override val binding by viewBinding(FragmentCharacterDetailsBinding::bind)
-    override val viewModel: CharacterDetailsViewModel by viewModels()
+    override val viewModel: CharacterDetailsViewModel by viewModel()
     private val args: CharacterDetailsFragmentArgs by navArgs()
 
 

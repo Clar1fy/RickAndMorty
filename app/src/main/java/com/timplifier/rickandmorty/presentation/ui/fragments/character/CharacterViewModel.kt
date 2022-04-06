@@ -6,11 +6,8 @@ import com.timplifier.rickandmorty.base.BaseViewModel
 import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
 import com.timplifier.rickandmorty.data.repositories.CharacterRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class CharacterViewModel @Inject constructor(
+class CharacterViewModel(
     private val characterRepository: CharacterRepository
 ) : BaseViewModel() {
     private var page: Int = 0

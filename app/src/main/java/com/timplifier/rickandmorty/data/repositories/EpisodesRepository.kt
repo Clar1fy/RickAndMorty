@@ -3,9 +3,8 @@ package com.timplifier.rickandmorty.data.repositories
 import com.timplifier.rickandmorty.base.BaseRepository
 import com.timplifier.rickandmorty.data.local.db.daos.EpisodeDao
 import com.timplifier.rickandmorty.data.remote.apiservices.EpisodesApiService
-import javax.inject.Inject
 
-class EpisodesRepository @Inject constructor(
+class EpisodesRepository(
     private val episodesApiService: EpisodesApiService,
     private val episodeDao: EpisodeDao
 ) : BaseRepository() {

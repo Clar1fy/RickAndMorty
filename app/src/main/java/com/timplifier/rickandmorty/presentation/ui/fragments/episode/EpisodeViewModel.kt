@@ -6,11 +6,8 @@ import com.timplifier.rickandmorty.base.BaseViewModel
 import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.episode.RickAndMortyEpisode
 import com.timplifier.rickandmorty.data.repositories.EpisodesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class EpisodeViewModel @Inject constructor(
+class EpisodeViewModel(
     private val episodesRepository: EpisodesRepository
 ) : BaseViewModel() {
     var isLoading: Boolean = false
