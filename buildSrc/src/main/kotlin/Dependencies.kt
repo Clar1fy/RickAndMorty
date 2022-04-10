@@ -1,5 +1,11 @@
 object Dependencies {
 
+    object AGP {
+        const val version = "7.1.3"
+        const val application = "com.android.application"
+        const val library = "com.android.library"
+    }
+
     object Kotlin {
 
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
@@ -49,7 +55,7 @@ object Dependencies {
     }
 
     object Navigation {
-        private const val version = "2.4.1"
+        const val version = "2.4.1"
 
         const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
         const val ui = "androidx.navigation:navigation-ui-ktx:$version"
@@ -57,7 +63,7 @@ object Dependencies {
     }
 
     object Hilt {
-        private const val version = "2.41"
+        const val version = "2.41"
 
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"

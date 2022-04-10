@@ -1,7 +1,9 @@
 package com.timplifier.rickandmorty.presentation.ui.activity
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -17,18 +19,22 @@ class MainActivity : AppCompatActivity() {
         setupNavigation()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        return super.onCreateOptionsMenu(menu)
+
+    }
+
     private fun setupNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
         val appBarConfiguration = AppBarConfiguration.Builder(
             R.id.charactersFragment,
             R.id.locationsFragment,
             R.id.episodesFragment
         ).build()
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration)
-
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
         binding.bottomNavigationView.itemIconTintList = null
 
 

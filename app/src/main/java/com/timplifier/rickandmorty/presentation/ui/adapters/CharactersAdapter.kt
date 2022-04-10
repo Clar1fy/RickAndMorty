@@ -32,6 +32,7 @@ class CharactersAdapter(
         )
     }
 
+
     inner class CharactersViewHolder(private val binding: ItemCharactersBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(character: RickAndMortyCharacter) {

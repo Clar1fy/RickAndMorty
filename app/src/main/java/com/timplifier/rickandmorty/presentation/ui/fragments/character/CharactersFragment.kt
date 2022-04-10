@@ -1,5 +1,8 @@
 package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
+import android.view.Menu
+import android.view.MenuInflater
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +16,7 @@ import com.timplifier.rickandmorty.presentation.ui.adapters.CharactersAdapter
 import com.timplifier.rickandmorty.utils.PaginationScrollListener
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterViewModel>(
     R.layout.fragment_characters
@@ -22,6 +26,28 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
     private val charactersAdapter = CharactersAdapter(this::onItemClick)
     override fun setupViews() {
         setupAdapter()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        val search = menu.findItem(R.id.search_view)
+        val searchView = search.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val searchText = query?.lowercase(Locale.getDefault())
+                if (searchText != null)
+                    searchInDatabase(searchText)
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                val searchText = query?.lowercase(Locale.getDefault())
+                if (searchText != null)
+                    searchInDatabase(searchText)
+                return true
+            }
+
+        })
     }
 
     private fun setupAdapter() {
@@ -85,6 +111,18 @@ class CharactersFragment : BaseFragment<FragmentCharactersBinding, CharacterView
                 id
             )
         )
+
+    }
+
+    private fun searchInDatabase(query: String) {
+        val searchQuery = "%$query%"
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewModel.searchCharacters(searchQuery).observe(viewLifecycleOwner) {
+                charactersAdapter.submitData(it)
+            }
+        }
+
 
     }
 

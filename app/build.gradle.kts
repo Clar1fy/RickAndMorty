@@ -11,7 +11,6 @@ plugins {
     // Navigation SafeArgs
     id(Dependencies.Navigation.safeArgsPlugin)
 
-
 }
 
 android {

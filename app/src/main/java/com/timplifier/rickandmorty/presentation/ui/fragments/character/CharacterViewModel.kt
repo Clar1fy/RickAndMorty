@@ -2,6 +2,7 @@ package com.timplifier.rickandmorty.presentation.ui.fragments.character
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import com.timplifier.rickandmorty.base.BaseViewModel
 import com.timplifier.rickandmorty.data.remote.dtos.RickAndMortyResponse
 import com.timplifier.rickandmorty.data.remote.dtos.character.RickAndMortyCharacter
@@ -29,7 +30,9 @@ class CharacterViewModel(
 
     }
 
-    fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState, null)
+    fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState)
+    fun searchCharacters(searchQuery: String) =
+        characterRepository.searchCharacters(searchQuery).asLiveData()
 
 
 }
