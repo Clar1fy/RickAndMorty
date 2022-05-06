@@ -76,7 +76,6 @@ dependencies {
     implementation(Dependencies.Retrofit.converterGson)
 
     // OkHttpClient
-    //
     implementation(Dependencies.OkHttp.loggingInterceptor)
     implementation(Dependencies.OkHttp.okHttp)
     implementation(Dependencies.OkHttp.bom)
@@ -84,8 +83,6 @@ dependencies {
     // Koin
     implementation(Dependencies.Koin.koinAndroid)
 
-    // Legacy Support
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Glide
     implementation(Dependencies.Glide.glide)
@@ -98,5 +95,4 @@ dependencies {
     implementation(Dependencies.Room.runtime)
     implementation(Dependencies.Room.supportKotlinExtensionsAndCoroutines)
     kapt(Dependencies.Room.compiler)
-    //
 }

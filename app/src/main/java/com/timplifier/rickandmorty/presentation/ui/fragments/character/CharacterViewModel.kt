@@ -31,8 +31,6 @@ class CharacterViewModel(
     }
 
     fun getCharacters() = characterRepository.getCharacters().gather(_characterLocalState)
-    fun searchCharacters(searchQuery: String) =
-        characterRepository.searchCharacters(searchQuery).asLiveData()
 
 
 }
